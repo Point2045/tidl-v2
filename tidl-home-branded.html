@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}body{margin:0;-webkit-font-smoothing:antialiased;}
+
+/* ── TIDL BRAND TOKENS ── */
+:root{
+  --accent:#C4A35A;
+  --accentInk:#0A0A08;
+  --gold-lt:#E2CFA0;
+  --gold-dk:#8B7030;
+  --gold-bg:#F7F1E4;
+  --feature:#111110;
+  --featureInk:#FFFFFF;
+  --featureAccent:#C4A35A;
+  --featureBd:rgba(255,255,255,.07);
+  --page:#FAFAF7;
+  --ink:#0A0A08;
+  --card:#FFFFFF;
+  --card2:#F4EFE6;
+  --wash:#F7F1E4;
+  --washBd:#E8E2D6;
+  --border:#E8E2D6;
+  --border2:#C4A35A;
+  --muted:#6B6860;
+  --faint:#9E9B95;
+  --subtle:#9E9B95;
+  --hair:#E8E2D6;
+  --tint:#F4EFE6;
+}
+
+/* ── INTERACTION ── */
+.tidl-card{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.tidl-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(196,163,90,.12);border-color:var(--gold-lt)!important}
+.tidl-tile:hover .tidl-tileimg{transform:scale(1.04)}
+.tidl-tileimg{transition:transform .55s ease}
+.tidl-row:hover{background:var(--card2)}
+
+/* ── EYEBROW ── */
+.tidl-eyebrow{display:flex;align-items:center;gap:12px;font-family:'Inter',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold-dk)}
+.tidl-eyebrow::before{content:'';width:24px;height:1px;background:var(--accent);flex:none}
+.tidl-eyebrow-l{display:flex;align-items:center;gap:12px;font-family:'Inter',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--accent)}
+.tidl-eyebrow-l::before{content:'';width:24px;height:1px;background:var(--accent);opacity:.5;flex:none}
+
+/* ── DISPLAY / HEADLINES ── */
+.tidl-display{font-family:'Cormorant Garamond',serif;font-weight:300;letter-spacing:-2px;line-height:1.0}
+.tidl-display em{font-style:italic;color:var(--accent)}
+
+/* ── BUTTONS ── */
+.btn-primary{display:inline-flex;align-items:center;justify-content:center;height:54px;padding:0 32px;background:var(--accent);color:var(--accentInk);text-decoration:none;font-family:'Inter',sans-serif;font-weight:600;font-size:.72rem;letter-spacing:1.5px;text-transform:uppercase;border:none;cursor:pointer;transition:background .2s,transform .15s}
+.btn-primary:hover{background:#B8943F;transform:translateY(-1px)}
+.btn-dark{display:inline-flex;align-items:center;justify-content:center;height:54px;padding:0 32px;background:var(--feature);color:var(--featureInk);text-decoration:none;font-family:'Inter',sans-serif;font-weight:600;font-size:.72rem;letter-spacing:1.5px;text-transform:uppercase;border:none;cursor:pointer}
+.btn-ghost{display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:var(--featureInk);font-family:'Inter',sans-serif;font-weight:500;font-size:.8rem;letter-spacing:.5px}
+
+/* ── GOLD TICKER ── */
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.tidl-ticker-wrap{overflow:hidden;white-space:nowrap;border-top:1px solid rgba(196,163,90,.2);border-bottom:1px solid rgba(196,163,90,.2);background:var(--feature);padding:12px 0}
+.tidl-ticker-inner{display:inline-block;animation:tick 28s linear infinite}
+.tidl-ticker-item{font-family:'Inter',sans-serif;font-size:.6rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--accent);padding:0 48px}
+
+/* ── HERO ANIMATION ── */
+@keyframes tidlHeroIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.tidl-heroanim{animation:tidlHeroIn .9s cubic-bezier(.2,.7,.2,1) both}
+
+/* ── RESPONSIVE ── */
+@media(max-width:920px){.tidl-hero{grid-template-columns:1fr!important}.tidl-heromedia{min-height:440px!important}.tidl-split{grid-template-columns:1fr!important}.tidl-outcome{grid-template-columns:1fr!important}}
+@media(max-width:860px){.tidl-shots{grid-template-columns:1fr 1fr!important}}
+@media(max-width:760px){.tidl-sec{padding:60px 18px!important}.tidl-band{padding:22px 18px!important}}
+@media(max-width:560px){.tidl-shots{grid-template-columns:1fr!important}}
+</style>
+</helmet>
+<div style="font-family:'Inter',sans-serif;background:var(--page);color:var(--ink)">
+
+  <!-- ANNOUNCEMENT BAR -->
+  <div style="background:var(--feature);color:rgba(255,255,255,.7);border-bottom:1px solid rgba(196,163,90,.2);text-align:center;font-size:.7rem;font-weight:500;padding:10px 16px;letter-spacing:1.5px;text-transform:uppercase">The pre-dosed GLP 1 pen is here. Card authorized at visit, charged only if prescribed. <a href='/category.dc' style='color:var(--accent);text-decoration:none;margin-left:8px'>See if you qualify →</a></div>
+
+  <dc-import name="TIDLNav" active="home" hint-size="100%,64px"></dc-import>
+
+  <!-- HERO — charcoal full-bleed -->
+  <section style="background:var(--feature);color:var(--featureInk)">
+    <div class="tidl-hero tidl-sec" style="max-width:1320px;margin:0 auto;padding:72px 24px 80px;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center">
+      <div class="tidl-heroanim">
+        <div class="tidl-eyebrow-l" style="margin-bottom:28px">Provider-led · GLP 1 weight management</div>
+        <h1 class="tidl-display" style="font-size:clamp(48px,7.5vw,96px);margin:0 0 28px;color:var(--featureInk)">Weight care that starts with a <em>provider.</em></h1>
+        <p style="font-family:'Inter',sans-serif;font-size:clamp(15px,1.4vw,18px);line-height:1.7;color:rgba(255,255,255,.4);font-weight:300;margin:0 0 36px;max-width:500px">A licensed provider reviews your health profile and, if appropriate, prescribes a pre-dosed pen that a network pharmacy compounds and ships. Not powder you mix yourself.</p>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px">
+          <a href='/intake.dc' class="btn-primary">Start your visit</a>
+          <a href='/home.dc#how' class="btn-ghost">How it works <span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border:1px solid rgba(255,255,255,.15)">↓</span></a>
+        </div>
+      </div>
+
+      <!-- product render -->
+      <div class="tidl-heromedia tidl-heroanim" style="position:relative;overflow:hidden;min-height:560px;background:#0F0D0A center/cover no-repeat;background-image:url('img/pen-charcoal.png');border:1px solid rgba(196,163,90,.1)">
+        <span style="position:absolute;top:16px;left:18px;font-family:'Inter',sans-serif;font-size:.6rem;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:#C4A35A;background:rgba(0,0,0,.5);padding:5px 10px">[ pen hero render — warm ring on charcoal ]</span>
+        <div style="position:absolute;left:18px;bottom:18px;right:18px;display:flex;align-items:center;gap:12px;background:rgba(10,10,8,.6);backdrop-filter:blur(4px);border:1px solid rgba(196,163,90,.2);padding:14px 16px">
+          <span style="width:36px;height:36px;background:rgba(196,163,90,.12);border:1px solid rgba(196,163,90,.3);display:flex;align-items:center;justify-content:center;color:#C4A35A;flex:none;font-size:16px">◆</span>
+          <div>
+            <div style="font-size:.8rem;font-weight:600;color:#fff;letter-spacing:.3px">The pre-dosed TIDL Pen</div>
+            <div style="font-size:.7rem;color:#C4A35A;letter-spacing:.5px;margin-top:2px">Compounded by a licensed US pharmacy</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GOLD CREDENTIAL TICKER -->
+  <div class="tidl-ticker-wrap">
+    <div class="tidl-ticker-inner">
+      <span class="tidl-ticker-item">Pharmaceutical Grade</span>
+      <span class="tidl-ticker-item">503A / 503B Certified</span>
+      <span class="tidl-ticker-item">Licensed US Providers</span>
+      <span class="tidl-ticker-item">35 States Licensed</span>
+      <span class="tidl-ticker-item">GLP 1 Protocols</span>
+      <span class="tidl-ticker-item">HIPAA Compliant</span>
+      <span class="tidl-ticker-item">Pharmaceutical Grade</span>
+      <span class="tidl-ticker-item">503A / 503B Certified</span>
+      <span class="tidl-ticker-item">Licensed US Providers</span>
+      <span class="tidl-ticker-item">35 States Licensed</span>
+      <span class="tidl-ticker-item">GLP 1 Protocols</span>
+      <span class="tidl-ticker-item">HIPAA Compliant</span>
+    </div>
+  </div>
+
+  <!-- START HERE — product shots + goal quiz -->
+  <section style="background:var(--card2);border-bottom:1px solid var(--border)">
+    <div class="tidl-sec" style="max-width:1320px;margin:0 auto;padding:80px 24px">
+      <div style="max-width:640px;margin:0 auto 40px;text-align:center">
+        <div class="tidl-eyebrow" style="justify-content:center;margin-bottom:18px">Start here</div>
+        <h2 class="tidl-display" style="font-size:clamp(32px,4.5vw,52px);margin:0 0 16px">Find your plan in two quick steps</h2>
+        <p style="font-family:'Inter',sans-serif;font-size:.9rem;font-weight:300;color:var(--muted);line-height:1.8;margin:0">Tell us your goal and your state. We confirm a provider is licensed where you live, then route you into a clinical visit. About three minutes, no charge to start.</p>
+      </div>
+
+      <!-- product shots -->
+      <div class="tidl-shots" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px">
+        <div style="position:relative;overflow:hidden;min-height:220px;background:#f0e7d8 center/cover no-repeat;background-image:url('img/pen-ring.png');border:1px solid var(--border)">
+          <span style="position:absolute;bottom:12px;left:12px;font-family:'Inter',sans-serif;font-size:.55rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#8B7030;background:rgba(250,250,247,.85);padding:4px 8px">pen — front angle</span>
+        </div>
+        <div style="position:relative;overflow:hidden;min-height:220px;background:#f0e7d8 center/cover no-repeat;background-image:url('img/warm-tile.png');border:1px solid var(--border)">
+          <span style="position:absolute;bottom:12px;left:12px;font-family:'Inter',sans-serif;font-size:.55rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#8B7030;background:rgba(250,250,247,.85);padding:4px 8px">pen with packaging</span>
+        </div>
+        <div style="position:relative;overflow:hidden;min-height:220px;background:#eef2f1 center/cover no-repeat;background-image:url('img/ingredient.png');border:1px solid var(--border)">
+          <span style="position:absolute;bottom:12px;left:12px;font-family:'Inter',sans-serif;font-size:.55rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#6B6860;background:rgba(250,250,247,.85);padding:4px 8px">formulation macro</span>
+        </div>
+      </div>
+
+      <!-- goal quiz card -->
+      <div style="max-width:540px;margin:0 auto;background:var(--card);border:1px solid var(--border);box-shadow:0 8px 32px rgba(196,163,90,.06);padding:32px">
+        <sc-if value="{{ stepGoal }}" hint-placeholder-val="{{ true }}">
+          <div class="tidl-eyebrow" style="margin-bottom:12px">Step 1 of 2</div>
+          <div class="tidl-display" style="font-size:1.8rem;margin-bottom:20px;letter-spacing:-1px">What is your weight goal?</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <sc-for list="{{ goals }}" as="g" hint-placeholder-count="4"><button onClick="{{ g.pick }}" style="display:flex;align-items:center;justify-content:space-between;text-align:left;border:1px solid var(--border);background:var(--page);padding:16px 18px;cursor:pointer;font-family:'Inter',sans-serif;font-size:.85rem;font-weight:500;color:var(--ink);transition:border-color .2s,background .2s" onmouseover="this.style.borderColor='var(--accent)';this.style.background='var(--wash)'" onmouseout="this.style.borderColor='var(--border)';this.style.background='var(--page)'">{{ g.label }}<span style="color:var(--accent);font-size:.7rem;letter-spacing:1px">→</span></button></sc-for>
+          </div>
+          <div style="font-family:'Inter',sans-serif;font-size:.65rem;font-weight:300;color:var(--faint);margin-top:16px;text-align:center;letter-spacing:.5px">Takes about 3 minutes. No charge to start or to be reviewed.</div>
+        </sc-if>
+        <sc-if value="{{ stepState }}" hint-placeholder-val="{{ false }}">
+          <button onClick="{{ back }}" style="background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;color:var(--faint);font-size:.75rem;padding:0;margin-bottom:16px;letter-spacing:.5px">‹ Back</button>
+          <div class="tidl-eyebrow" style="margin-bottom:12px">Step 2 of 2</div>
+          <div class="tidl-display" style="font-size:1.8rem;margin-bottom:8px;letter-spacing:-1px">Where do you live?</div>
+          <div style="font-family:'Inter',sans-serif;font-size:.8rem;font-weight:300;color:var(--muted);margin-bottom:16px;line-height:1.6">We confirm a provider is licensed in your state before anything else.</div>
+          <select onInput="{{ onState }}" style="width:100%;height:52px;border:1px solid var(--border);padding:0 14px;font-family:'Inter',sans-serif;font-size:.85rem;background:var(--card);color:var(--ink);margin-bottom:14px;outline:none">
+            <option value="">Select your state</option>
+            <sc-for list="{{ stateOpts }}" as="s" hint-placeholder-count="6"><option value="{{ s }}">{{ s }}</option></sc-for>
+          </select>
+          <a href='/intake.dc' onClick='{{ goVisit }}' class="btn-primary" style='display:flex;align-items:center;justify-content:center;pointer-events:{{ continuePe }};background:{{ continueBg }}'>Continue to your visit</a>
+          <div style="font-family:'Inter',sans-serif;font-size:.65rem;font-weight:300;color:var(--faint);margin-top:12px;text-align:center;letter-spacing:.5px">Your goal: {{ goalLabel }}</div>
+        </sc-if>
+        <sc-if value="{{ stepUnserved }}" hint-placeholder-val="{{ false }}">
+          <div style="width:44px;height:44px;background:var(--wash);border:1px solid rgba(196,163,90,.3);display:flex;align-items:center;justify-content:center;margin-bottom:16px"><span style="color:var(--accent);font-size:18px;font-weight:700">!</span></div>
+          <div class="tidl-display" style="font-size:1.6rem;margin-bottom:10px;letter-spacing:-1px">Not available in {{ stateVal }} yet</div>
+          <div style="font-family:'Inter',sans-serif;font-size:.82rem;font-weight:300;color:var(--muted);line-height:1.7;margin-bottom:18px">GLP 1 care is rolling out state by state. Leave your email and we will tell you the moment it opens. You will not be entered into the paid flow.</div>
+          <input placeholder="Email address" style="width:100%;height:50px;border:1px solid var(--border);padding:0 14px;font-family:'Inter',sans-serif;font-size:.85rem;background:var(--card);color:var(--ink);margin-bottom:10px;outline:none"/>
+          <button onClick="{{ notify }}" class="btn-primary" style="width:100%;justify-content:center">Notify me when it opens</button>
+          <button onClick="{{ back }}" style="width:100%;background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;color:var(--faint);font-size:.72rem;margin-top:14px;letter-spacing:.5px">Choose a different state</button>
+        </sc-if>
+        <sc-if value="{{ stepNotified }}" hint-placeholder-val="{{ false }}">
+          <div style="width:44px;height:44px;background:var(--wash);border:1px solid rgba(196,163,90,.3);display:flex;align-items:center;justify-content:center;margin-bottom:16px"><span style="color:var(--accent);font-size:18px;font-weight:700">✓</span></div>
+          <div class="tidl-display" style="font-size:1.6rem;margin-bottom:10px;letter-spacing:-1px">You are on the list</div>
+          <div style="font-family:'Inter',sans-serif;font-size:.82rem;font-weight:300;color:var(--muted);line-height:1.7">We will email you when GLP 1 care opens in {{ stateVal }}. No charge, no commitment.</div>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREDIBILITY BAND -->
+  <section style="background:var(--card);border-bottom:1px solid var(--border)">
+    <div class="tidl-band" style="max-width:1320px;margin:0 auto;padding:22px 24px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 36px">
+      <sc-for list="{{ credBand }}" as="c" hint-placeholder-count="5">
+        <div style="display:flex;align-items:center;gap:10px"><span style="color:var(--accent);flex:none;font-size:14px">{{ c.icon }}</span><span style="font-family:'Inter',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:.5px;color:var(--ink)">{{ c.label }}</span></div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- TIMELINE STRIP -->
+  <section style="background:var(--page);border-bottom:1px solid var(--border)">
+    <div class="tidl-sec" style="max-width:1320px;margin:0 auto;padding:32px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;align-items:center">
+      <sc-for list="{{ timeline }}" as="t" hint-placeholder-count="3">
+        <div style="display:flex;gap:16px;align-items:flex-start">
+          <span style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--accent);flex:none;line-height:1;letter-spacing:-1px">{{ t.n }}</span>
+          <div>
+            <div style="font-family:'Inter',sans-serif;font-size:.85rem;font-weight:600;color:var(--ink);letter-spacing:-.2px">{{ t.title }}</div>
+            <div style="font-family:'Inter',sans-serif;font-size:.78rem;font-weight:300;color:var(--muted);margin-top:3px;line-height:1.5">{{ t.text }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- TREATMENTS INDEX -->
+  <section class="tidl-sec" style="max-width:1320px;margin:0 auto;padding:96px 24px 52px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:36px">
+      <div>
+        <div class="tidl-eyebrow" style="margin-bottom:18px">Treatments index</div>
+        <h2 class="tidl-display" style="font-size:clamp(34px,4.8vw,60px);margin:0">One category live.<br>More to follow.</h2>
+      </div>
+      <a href='/category.dc' style='font-family:"Inter",sans-serif;font-size:.72rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);text-decoration:none'>See all GLP 1 plans →</a>
+    </div>
+    <!-- live feature row -->
+    <a class='tidl-tile tidl-card' href='/category.dc' style='display:grid;grid-template-columns:1.1fr 1fr;gap:0;text-decoration:none;color:inherit;border:1px solid var(--border);margin-bottom:12px;min-height:300px;overflow:hidden'>
+      <div style="padding:40px;display:flex;flex-direction:column;justify-content:center;background:var(--card)">
+        <span style="font-family:'Inter',sans-serif;font-size:.55rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold-dk);margin-bottom:16px;display:flex;align-items:center;gap:8px"><span style="width:16px;height:1px;background:var(--accent);display:inline-block"></span>Live now</span>
+        <div class="tidl-display" style="font-size:clamp(26px,3vw,40px);margin-bottom:14px">GLP 1 weight management</div>
+        <p style="font-family:'Inter',sans-serif;font-size:.85rem;font-weight:300;color:var(--muted);line-height:1.7;margin:0 0 20px;max-width:420px">Provider-prescribed pre-dosed pen, titrated over time. Subscribe from $199/mo or one-time from $239, if prescribed.</p>
+        <span style="font-family:'Inter',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent)">Explore plans →</span>
+      </div>
+      <div style="position:relative;min-height:240px;overflow:hidden"><div class="tidl-tileimg" style="position:absolute;inset:0;background:#f0e7d8 center/cover no-repeat;background-image:url('img/tile-weight.png')"></div></div>
+    </a>
+    <!-- coming soon -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
+      <sc-for list="{{ soonCats }}" as="c" hint-placeholder-count="4">
+        <div class="tidl-tile" style="overflow:hidden;position:relative;min-height:150px;display:flex;flex-direction:column;justify-content:flex-end;border:1px solid var(--border)">
+          <div class="tidl-tileimg" style="position:absolute;inset:0;background:#e3e7e9 center/cover no-repeat;background-image:url('img/tile-muted.png');opacity:.85"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,8,0) 40%,rgba(10,10,8,.55))"></div>
+          <span style="position:absolute;top:12px;left:12px;font-family:'Inter',sans-serif;font-size:.55rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold-dk);background:rgba(250,250,247,.9);padding:4px 8px">Soon</span>
+          <div style="position:relative;padding:16px;color:#fff"><div style="font-family:'Inter',sans-serif;font-size:.9rem;font-weight:600;letter-spacing:.2px">{{ c }}</div></div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- PEN VS VIALS -->
+  <section style="background:var(--card2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)" id="penvs">
+    <div class="tidl-sec tidl-split" style="max-width:1320px;margin:0 auto;padding:96px 24px;display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:center">
+      <div>
+        <div class="tidl-eyebrow" style="margin-bottom:20px">The difference</div>
+        <h2 class="tidl-display" style="font-size:clamp(34px,4.8vw,60px);margin:0 0 22px">A pre-dosed pen, not powder you mix yourself.</h2>
+        <p style="font-family:'Inter',sans-serif;font-size:.9rem;font-weight:300;line-height:1.8;color:var(--muted);margin:0 0 28px;max-width:480px">Gray-market peptides arrive as research vials you reconstitute and draw by hand. The TIDL pen is dispensed by a licensed network pharmacy, pre-dosed, and ready to use. Less room for error, every dose.</p>
+        <a href='/category.dc#compare' class="btn-dark">Compare in detail</a>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div style="border:1.5px solid var(--accent);overflow:hidden;background:var(--card)">
+          <div style="height:150px;background:#f0e7d8 center/cover no-repeat;background-image:url('img/pen-ring.png');position:relative"><span style="position:absolute;top:10px;left:10px;font-family:'Inter',sans-serif;font-size:.55rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accentInk);background:var(--accent);padding:4px 9px">Pen</span></div>
+          <div style="padding:20px">
+            <div style="font-family:'Inter',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold-dk);margin-bottom:12px">TIDL pre-dosed pen</div>
+            <sc-for list="{{ penPros }}" as="x" hint-placeholder-count="4">
+              <div style="display:flex;gap:10px;font-family:'Inter',sans-serif;font-size:.78rem;font-weight:300;color:var(--ink);margin-bottom:9px;line-height:1.4">
+                <span style="width:16px;height:16px;background:var(--wash);border:1px solid rgba(196,163,90,.4);color:var(--accent);display:flex;align-items:center;justify-content:center;flex:none;font-size:.6rem;font-weight:700">✓</span>{{ x }}
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="border:1px solid var(--border);overflow:hidden;background:var(--tint)">
+          <div style="height:150px;background:#e3e7e9 center/cover no-repeat;background-image:url('img/cool-vial.png');position:relative"><span style="position:absolute;top:10px;left:10px;font-family:'Inter',sans-serif;font-size:.55rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);background:rgba(250,250,247,.85);padding:4px 9px">Vial</span></div>
+          <div style="padding:20px">
+            <div style="font-family:'Inter',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--faint);margin-bottom:12px">Gray-market vials</div>
+            <sc-for list="{{ vialCons }}" as="x" hint-placeholder-count="4">
+              <div style="display:flex;gap:10px;font-family:'Inter',sans-serif;font-size:.78rem;font-weight:300;color:var(--faint);margin-bottom:9px;line-height:1.4">
+                <span style="width:16px;height:16px;background:#EDEAE3;display:flex;align-items:center;justify-content:center;flex:none;font-size:.6rem;font-weight:700;color:#8B7030">!</span>{{ x }}
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS — dark chapter -->
+  <section id="how" style="background:var(--feature);color:var(--featureInk)">
+    <div class="tidl-sec" style="max-width:1320px;margin:0 auto;padding:104px 24px">
+      <div style="max-width:640px;margin-bottom:56px">
+        <div class="tidl-eyebrow-l" style="margin-bottom:20px">How it works</div>
+        <h2 class="tidl-display" style="font-size:clamp(36px,5.5vw,72px);margin:0;color:var(--featureInk)">Four steps from<br>visit to pen.</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:var(--featureBd);border:1px solid var(--featureBd);overflow:hidden">
+        <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
+          <div style="background:var(--feature);padding:34px 28px">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;color:var(--featureAccent);margin-bottom:20px;letter-spacing:-2px;line-height:1">{{ s.n }}</div>
+            <div style="font-family:'Inter',sans-serif;font-size:.9rem;font-weight:600;color:var(--featureInk);margin-bottom:10px;letter-spacing:.2px">{{ s.title }}</div>
+            <div style="font-family:'Inter',sans-serif;font-size:.8rem;font-weight:300;line-height:1.65;color:rgba(255,255,255,.4)">{{ s.text }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="margin-top:48px">
+        <a href='/intake.dc' class="btn-primary">Start your visit</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUTCOMES — stat moment -->
+  <section style="background:var(--wash);border-top:1px solid var(--washBd);border-bottom:1px solid var(--washBd)">
+    <div class="tidl-sec tidl-outcome" style="max-width:1320px;margin:0 auto;padding:104px 24px;display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center">
+      <div>
+        <div class="tidl-eyebrow" style="margin-bottom:22px">What the evidence shows</div>
+        <div class="tidl-display" style="font-size:clamp(96px,16vw,196px);color:var(--accent);margin:-12px 0 6px;line-height:.85">XX%</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;letter-spacing:-.5px;margin-bottom:16px;color:var(--ink)">average body weight reduction*</div>
+        <p style="font-family:'Inter',sans-serif;font-size:.85rem;font-weight:300;line-height:1.8;color:var(--muted);margin:0 0 20px;max-width:480px">In clinical studies of this class of GLP 1 medicine at [ XX ] mg over [ XX ] months. Placeholder figure to be confirmed and cited with counsel before launch.</p>
+        <div style="border-left:2px solid var(--accent);background:rgba(196,163,90,.06);padding:12px 16px;font-family:'Inter',sans-serif;font-size:.75rem;font-weight:300;color:var(--muted);line-height:1.6;max-width:480px">*Individual results vary and are not guaranteed. Results depend on the medicine, dose, and individual factors. This is not a promise of any specific outcome.</div>
+      </div>
+      <div>
+        <div style="border:1px solid var(--washBd);position:relative;min-height:400px;background:#f0e7d8 center/cover no-repeat;background-image:url('img/before-after.png')">
+          <span style="position:absolute;top:14px;left:14px;font-family:'Inter',sans-serif;font-size:.55rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold-dk);background:rgba(250,250,247,.85);padding:5px 9px">before &amp; after — partner</span>
+          <span style="position:absolute;bottom:14px;left:14px;right:14px;font-family:'Inter',sans-serif;font-size:.65rem;font-weight:300;color:rgba(255,255,255,.85);background:rgba(10,10,8,.65);padding:9px 12px;line-height:1.5">Partner-provided. Results not typical. Individual results vary and are not guaranteed.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFIT TRIPTYCH -->
+  <section class="tidl-sec" style="max-width:1320px;margin:0 auto;padding:96px 24px">
+    <div style="margin-bottom:36px">
+      <div class="tidl-eyebrow" style="margin-bottom:18px">Why the pen</div>
+      <h2 class="tidl-display" style="font-size:clamp(32px,4.5vw,56px);margin:0">Engineered for<br><em>clinical care</em></h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+      <sc-for list="{{ triptych }}" as="t" hint-placeholder-count="3">
+        <div style="padding:36px 28px;background:{{ t.bg }};color:{{ t.fg }};border:1px solid {{ t.bd }};min-height:240px;display:flex;flex-direction:column">
+          <div style="width:44px;height:44px;background:{{ t.iconBg }};border:1px solid rgba(196,163,90,.25);display:flex;align-items:center;justify-content:center;margin-bottom:auto;color:{{ t.iconFg }};font-size:18px">{{ t.icon }}</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;letter-spacing:-.5px;margin:28px 0 10px;line-height:1">{{ t.title }}</div>
+          <div style="font-family:'Inter',sans-serif;font-size:.78rem;font-weight:300;line-height:1.65;color:{{ t.muted }}">{{ t.text }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- CARE TEAM -->
+  <section style="background:var(--card2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+    <div class="tidl-sec tidl-split" style="max-width:1320px;margin:0 auto;padding:96px 24px;display:grid;grid-template-columns:.92fr 1.08fr;gap:56px;align-items:center">
+      <div style="overflow:hidden;min-height:440px;background:#e3e7e9 center/cover no-repeat;background-image:url('img/care-team.png');border:1px solid var(--border);position:relative">
+        <span style="position:absolute;bottom:14px;left:14px;font-family:'Inter',sans-serif;font-size:.55rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold-dk);background:rgba(250,250,247,.88);padding:5px 10px">provider photo — clinical credentials</span>
+      </div>
+      <div>
+        <div class="tidl-eyebrow" style="margin-bottom:20px">Clinical leadership</div>
+        <h2 class="tidl-display" style="font-size:clamp(32px,4.2vw,54px);margin:0 0 22px">Care led by licensed providers, with medical oversight</h2>
+        <p style="font-family:'Inter',sans-serif;font-size:.88rem;font-weight:300;line-height:1.8;color:var(--muted);margin:0 0 28px;max-width:520px">Your care is delivered by providers licensed in your state and overseen by our Medical Director. Treatment protocols are clinician-developed and reviewed on an ongoing basis.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px">
+          <sc-for list="{{ careTeam }}" as="c" hint-placeholder-count="3">
+            <div style="border-top:1.5px solid var(--accent);padding-top:16px">
+              <div style="font-family:'Inter',sans-serif;font-size:.82rem;font-weight:600;margin-bottom:6px;color:var(--ink);letter-spacing:.2px">{{ c.title }}</div>
+              <div style="font-family:'Inter',sans-serif;font-size:.75rem;font-weight:300;color:var(--muted);line-height:1.6">{{ c.text }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="font-family:'Inter',sans-serif;font-size:.65rem;font-weight:300;color:var(--faint);margin-top:18px;letter-spacing:.3px">Individual provider names and credentials shown after they are cleared for display.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNER UGC -->
+  <section class="tidl-sec" style="max-width:1320px;margin:0 auto;padding:96px 24px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:36px">
+      <div>
+        <div class="tidl-eyebrow" style="margin-bottom:18px">Partner UGC slot</div>
+        <h2 class="tidl-display" style="font-size:clamp(30px,4vw,50px);margin:0">From people on a prescribed plan</h2>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:12px">
+      <sc-for list="{{ ugc }}" as="u" hint-placeholder-count="3">
+        <div style="border:1px solid var(--border);background:var(--card);padding:32px;display:flex;flex-direction:column">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:300;letter-spacing:-1px;line-height:1;color:var(--accent);margin-bottom:6px">{{ u.stat }}</div>
+          <div style="font-family:'Inter',sans-serif;font-size:.55rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--faint);margin-bottom:20px">{{ u.statLabel }}</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:300;line-height:1.6;color:var(--ink);flex:1;font-style:italic">{{ u.quote }}</div>
+          <div style="display:flex;align-items:center;gap:12px;margin-top:24px;padding-top:20px;border-top:1px solid var(--hair)">
+            <div style="width:38px;height:38px;background:#f0e7d8 center/cover no-repeat;background-image:url('img/warm-soft.png');flex:none;border:1px solid var(--border)"></div>
+            <div>
+              <div style="font-family:'Inter',sans-serif;font-size:.78rem;font-weight:600;color:var(--ink)">{{ u.name }}</div>
+              <div style="font-family:'Inter',sans-serif;font-size:.6rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--faint);margin-top:2px">{{ u.tag }}</div>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="font-family:'Inter',sans-serif;font-size:.65rem;font-weight:300;color:var(--faint);margin-top:16px;letter-spacing:.3px">Slot for neutral partner content. No celebrity, partner, or event names. Individual results vary and are not guaranteed.</div>
+  </section>
+
+  <!-- ASK TIDL ENTRY -->
+  <section class="tidl-sec" style="max-width:1320px;margin:0 auto;padding:0 24px 80px">
+    <a class='tidl-card' href='/help.dc' style='display:flex;flex-wrap:wrap;align-items:center;gap:20px;text-decoration:none;color:inherit;border:1px solid var(--border);padding:32px;background:var(--card)'>
+      <div style="width:52px;height:52px;background:var(--wash);border:1px solid rgba(196,163,90,.3);display:flex;align-items:center;justify-content:center;flex:none">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="10.5" cy="10.5" r="7" stroke="#C4A35A" stroke-width="1.5"/><path d="M16 16l4 4" stroke="#C4A35A" stroke-width="1.5" stroke-linecap="square"/></svg>
+      </div>
+      <div style="flex:1;min-width:240px">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;letter-spacing:-.5px;margin-bottom:6px;color:var(--ink)">Ask TIDL</div>
+        <div style="font-family:'Inter',sans-serif;font-size:.82rem;font-weight:300;color:var(--muted);line-height:1.6">Search FAQs, message your care team, or check eligibility with the quick goal quiz. A person is always one tap away.</div>
+      </div>
+      <span class="btn-primary" style="flex:none">Get help</span>
+    </a>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="tidl-sec" style="max-width:920px;margin:0 auto;padding:0 24px 96px">
+    <h2 class="tidl-display" style="font-size:clamp(32px,4vw,52px);margin:0 0 10px">Frequently asked questions</h2>
+    <p style="font-family:'Inter',sans-serif;font-size:.7rem;font-weight:300;color:var(--faint);margin:0 0 32px;letter-spacing:.5px">Structured for search &amp; answer engines (FAQ schema)</p>
+    <div style="border-top:1px solid var(--border)">
+      <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="6">
+        <div style="border-bottom:1px solid var(--border)">
+          <button onClick="{{ f.toggle }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;background:none;border:none;cursor:pointer;font-family:'Cormorant Garamond',serif;text-align:left;padding:24px 0;font-size:1.15rem;font-weight:400;color:var(--ink);letter-spacing:-.2px">{{ f.q }}<span style="flex:none;font-family:'Inter',sans-serif;font-size:20px;color:var(--accent);line-height:1;transform:{{ f.rot }};transition:transform .2s;font-weight:300">+</span></button>
+          <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}"><div style="font-family:'Inter',sans-serif;font-size:.85rem;font-weight:300;line-height:1.8;color:var(--muted);padding:0 0 28px;max-width:740px">{{ f.a }}</div></sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- CLOSER MANIFESTO -->
+  <section style="background:var(--feature);color:var(--featureInk)">
+    <div class="tidl-sec" style="max-width:1100px;margin:0 auto;padding:104px 24px;text-align:center">
+      <div class="tidl-eyebrow-l" style="justify-content:center;margin-bottom:28px">Our standard</div>
+      <div class="tidl-display" style="font-size:clamp(28px,4.5vw,56px);max-width:900px;margin:0 auto;color:var(--featureInk)">Real providers. Real prescriptions. A pre-dosed pen from a licensed pharmacy. <em>Care, not a checkout.</em></div>
+      <div style="margin-top:44px">
+        <a href='/intake.dc' class="btn-primary">Start your visit</a>
+      </div>
+    </div>
+  </section>
+
+  <dc-import name="TIDLFooter" hint-size="100%,720px"></dc-import>
+  <dc-import name="TIDLAnno" screen="Home & category landing" notes="{{ annoNotes }}" hint-size="0px,0px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1320,&quot;height&quot;:940}}">
+class Component extends DCLogic {
+  state = { open: -1, step: 'goal', goal: '', goalLabel: '', stateVal: '' };
+  served() { return ['California','New York','Texas','Florida','Illinois','Arizona','Colorado','Washington','Georgia','Ohio']; }
+  goVisit(e) {
+    const served = this.served().includes(this.state.stateVal);
+    if (!this.state.stateVal || !served) {
+      if (e) e.preventDefault();
+      if (this.state.stateVal && !served) this.setState({ step: 'unserved' });
+      return;
+    }
+    try { localStorage.setItem('tidl-starter', JSON.stringify({ goal: this.state.goal, goalLabel: this.state.goalLabel, state: this.state.stateVal })); } catch(err){}
+  }
+  renderVals() {
+    const faqData = [
+      { q: 'Do I need a prescription for a GLP 1 plan?', a: 'Yes. Every TIDL GLP 1 plan requires a prescription. You complete a clinical visit online, a licensed provider reviews your health profile, and they prescribe only if it is clinically appropriate for you.' },
+      { q: 'When am I charged?', a: 'Your card is collected and authorized when you submit your visit, and charged only if a provider prescribes. If a provider does not prescribe, you are not charged. Medication is billed separately and only if prescribed. For Subscribe, you can cancel anytime.' },
+      { q: 'What makes the TIDL pen different from research vials?', a: 'The pen is dispensed by a licensed network pharmacy, pre-dosed, and ready to use. Gray-market research vials are sold for reconstitution and hand-drawing doses, which leaves more room for dosing error and quality concerns.' },
+      { q: 'Who reviews my information?', a: 'A licensed provider in your state reviews your intake. If prescribed, a network pharmacy compounds your medication and ships it to you. You can message your care team throughout.' },
+      { q: 'What if I am not eligible?', a: 'If a provider determines a GLP 1 plan is not appropriate, you are not charged and you receive a clear explanation and next steps. Some people are directed to alternative care.' },
+      { q: 'Is this available in my state?', a: 'Availability depends on provider licensing and pharmacy network coverage in your state. You confirm your state before the visit, and we tell you immediately if care is available where you live.' },
+    ];
+    const faqs = faqData.map((f, i) => ({ q: f.q, a: f.a, open: this.state.open === i, rot: this.state.open === i ? 'rotate(45deg)' : 'rotate(0deg)', toggle: () => this.setState(s => ({ open: s.open === i ? -1 : i })) }));
+    const goalDefs = [
+      { key:'1-15', label:'Lose 1 to 15 lbs' },
+      { key:'16-50', label:'Lose 16 to 50 lbs' },
+      { key:'51+', label:'Lose 51 lbs or more' },
+      { key:'unsure', label:'Not sure yet, I want to lose weight' },
+    ];
+    const goals = goalDefs.map(g => ({ label: g.label, pick: () => this.setState({ goal: g.key, goalLabel: g.label, step: 'state' }) }));
+    const hasState = !!this.state.stateVal;
+    return {
+      faqs, goals,
+      stepGoal: this.state.step === 'goal',
+      stepState: this.state.step === 'state',
+      stepUnserved: this.state.step === 'unserved',
+      stepNotified: this.state.step === 'notified',
+      goalLabel: this.state.goalLabel,
+      stateVal: this.state.stateVal,
+      stateOpts: ['California','New York','Texas','Florida','Illinois','Arizona','Colorado','Washington','Georgia','Ohio','Alaska (not yet served)','Montana (not yet served)','Wyoming (not yet served)'],
+      onState: (e) => this.setState({ stateVal: e.target.value }),
+      continueBg: hasState ? 'var(--accent)' : 'var(--border)',
+      continuePe: hasState ? 'auto' : 'none',
+      goVisit: (e) => this.goVisit(e),
+      back: () => this.setState({ step: 'goal', stateVal: '' }),
+      notify: () => this.setState({ step: 'notified' }),
+      credBand: [
+        { icon:'✚', label:'Licensed US providers' },
+        { icon:'⚗', label:'US compounding pharmacy' },
+        { icon:'🛡', label:'HIPAA & SOC 2 via clinical backend' },
+        { icon:'✔', label:'LegitScript-style certified' },
+        { icon:'🔒', label:'Secure checkout' },
+      ],
+      timeline: [
+        { n:'01', title:'Start your visit', text:'Complete the online intake in a few minutes.' },
+        { n:'02', title:'Provider decision', text:'A licensed provider reviews in about 1 to 2 days.' },
+        { n:'03', title:'Pen ships', text:'If prescribed, your pen ships in about [ X ] days.' },
+      ],
+      soonCats: ['Mental health', 'Sexual health', 'Skin', 'Longevity'],
+      penPros: ['Dispensed by a licensed pharmacy', 'Pre-dosed, ready to use', 'Provider-titrated schedule', 'Tracked, refrigerated shipping'],
+      vialCons: ['Sold as research material', 'You reconstitute and draw doses', 'No prescriber relationship', 'Unverified quality and dosing'],
+      steps: [
+        { n: '01', title: 'Start a visit', text: 'Answer a focused clinical intake online. It adapts to your answers.' },
+        { n: '02', title: 'Provider review', text: 'A licensed provider in your state decides if a GLP 1 plan is appropriate.' },
+        { n: '03', title: 'Network pharmacy', text: 'If prescribed, a network pharmacy compounds and prepares your pre-dosed pen.' },
+        { n: '04', title: 'Your pen ships', text: 'Your pen arrives with guidance. Adjust with your provider over time.' },
+      ],
+      triptych: [
+        { icon:'◆', title:'Pre-dosed', text:'Ready to use out of the box. No reconstitution, no measuring at your counter.', bg:'var(--card)', fg:'var(--ink)', bd:'var(--border)', muted:'var(--muted)', iconBg:'var(--wash)', iconFg:'var(--accent)' },
+        { icon:'✚', title:'Provider-managed', text:'A licensed provider sets and titrates your dose, with messaging and follow-ups.', bg:'var(--accent)', fg:'var(--accentInk)', bd:'var(--accent)', muted:'rgba(10,10,8,.65)', iconBg:'rgba(10,10,8,.12)', iconFg:'var(--accentInk)' },
+        { icon:'❄', title:'Cold-chain shipped', text:'Compounded by a licensed pharmacy and shipped refrigerated and tracked.', bg:'var(--card)', fg:'var(--ink)', bd:'var(--border)', muted:'var(--muted)', iconBg:'var(--wash)', iconFg:'var(--accent)' },
+      ],
+      careTeam: [
+        { title:'State-licensed providers', text:'Every visit is reviewed by a provider licensed where you live.' },
+        { title:'Medical Director oversight', text:'Protocols are set and reviewed under medical leadership.' },
+        { title:'Ongoing care', text:'Messaging, follow-ups, and dose adjustments, not a one-time sale.' },
+      ],
+      ugc: [
+        { stat:'Wk 1', statLabel:'STARTED A PROVIDER-MANAGED PLAN', quote: '"Having a provider titrate my dose instead of guessing made the difference. The pen is simple."', name:'Partner patient, verified', tag:'PARTNER TESTIMONIAL' },
+        { stat:'No vials', statLabel:'MOVED OFF RECONSTITUTED VIALS', quote: '"No more measuring at my kitchen counter every week. It just works."', name:'Partner patient, verified', tag:'PARTNER UGC' },
+        { stat:'Care', statLabel:'FELT SUPPORTED BETWEEN DOSES', quote: '"The intake was thorough and the follow-up messages felt like real care."', name:'Partner patient, verified', tag:'PARTNER TESTIMONIAL' },
+      ],
+      annoNotes: [
+        { n: 1, kind: 'BRAND', title: 'Brand guidelines applied', text: 'Full TIDL 2026 brand book applied: Cormorant Garamond for display type, Inter for body, gold (#C4A35A) accent, cream (#FAFAF7) page ground, charcoal (#111110) feature sections. Spline Sans Mono removed. Square corners throughout per brand spec.' },
+        { n: 2, kind: 'TICKER', title: 'Gold credential ticker', text: 'Replaces the static credibility band with the scrolling gold-on-charcoal ticker from the brand book: Pharmaceutical Grade · 503A/503B Certified · Licensed US Providers · 35 States · GLP 1 Protocols · HIPAA.' },
+        { n: 3, kind: 'TYPE', title: 'Display type', text: 'Cormorant Garamond weight 300 for all headlines, stat numbers, card titles, and the manifesto. Italic gold variant used for emphasis in hero ("provider.") and closer ("Care, not a checkout.").' },
+        { n: 4, kind: 'BUTTONS', title: 'Button system', text: 'Square corners (0 border-radius), uppercase, 1.5px letter-spacing per brand spec. Gold primary, charcoal secondary, ghost on dark. Pill buttons from v1 removed.' },
+        { n: 5, kind: 'CARDS', title: 'Cards and components', text: 'Border-radius reduced to 0 (sharp) throughout — product shots, quiz card, triptych tiles, pen/vial compare cards. Gold border accent on hover.' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>
