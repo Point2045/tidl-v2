@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TIDL — Telehealth, Delivered</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23C4A35A'/><text x='16' y='22' text-anchor='middle' font-family='Georgia' font-size='18' fill='%230A0A08'>T</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   TIDL BRAND GUIDELINES — CSS CUSTOM PROPERTIES
+   ═══════════════════════════════════════════ */
+:root {
+  /* ── Primary Palette ── */
+  --cream:      #FAFAF7;
+  --white:      #FFFFFF;
+  --warm:       #F4EFE6;
+  --border:     #E8E2D6;
+  --text:       #0F0F0C;
+  --muted:      #6B6860;
+  --subtle:     #9E9B95;
+  --black:      #0A0A08;
+  --dark:       #111110;
+  --dark2:      #1C1C19;
+
+  /* ── Gold System ── */
+  --gold:       #C4A35A;
+  --gold-lt:    #E2CFA0;
+  --gold-dk:    #8B7030;
+  --gold-bg:    #F7F1E4;
+  --gold-glow:  rgba(196,163,90,0.15);
+
+  /* ── Semantic Colors ── */
+  --success:    #4A7C59;
+  --success-bg: #EDF5F0;
+  --error:      #B84233;
+  --error-bg:   #FDF0EE;
+  --info:       #3B6B9C;
+  --info-bg:    #EDF3FA;
+
+  /* ── Typography Scale ── */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* ── Spacing ── */
+  --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 20px;
+  --s6: 24px; --s7: 28px; --s8: 32px; --s10: 40px; --s12: 48px;
+  --s16: 64px; --s20: 80px; --s24: 96px;
+
+  /* ── Radius ── */
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 12px;
+  --r-xl: 16px;
+  --r-full: 9999px;
+
+  /* ── Shadows ── */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+  --shadow-xl: 0 16px 48px rgba(0,0,0,0.16);
+
+  /* ── Transitions ── */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration: 0.25s;
+}
+
+/* ═══════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+/* ═══════════════════════════════════════════
+   NAVIGATION
+   ═══════════════════════════════════════════ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px;
+  background: rgba(250,250,247,0.97);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--border);
+  transition: background var(--duration) var(--ease);
+}
+.nav.scrolled { background: rgba(250,250,247,1); box-shadow: var(--shadow-sm); }
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none; flex-shrink: 0;
+}
+.nav-logo-mark {
+  width: 32px; height: 32px;
+  background: var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.1rem; font-weight: 600; color: var(--black);
+}
+.nav-logo-text {
+  font-family: var(--font-display);
+  font-size: 1.4rem; font-weight: 500; letter-spacing: 2px;
+  color: var(--text);
+}
+.nav-links {
+  display: flex; align-items: center; gap: 0; flex: 1; justify-content: center;
+}
+.nav-links a {
+  padding: 0 18px;
+  font-size: 0.78rem; font-weight: 500; letter-spacing: 0.3px;
+  color: var(--muted); text-decoration: none;
+  transition: color var(--duration) var(--ease);
+  position: relative;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -2px; left: 18px; right: 18px;
+  height: 1.5px; background: var(--gold);
+  transform: scaleX(0); transition: transform var(--duration) var(--ease);
+}
+.nav-links a:hover::after { transform: scaleX(1); }
+.nav-right { display: flex; align-items: center; gap: 16px; }
+.nav-btn-secondary {
+  font-size: 0.78rem; font-weight: 500; color: var(--muted);
+  padding: 8px 16px; transition: color var(--duration) var(--ease);
+}
+.nav-btn-secondary:hover { color: var(--text); }
+.nav-btn-primary {
+  background: var(--text); color: var(--cream);
+  padding: 10px 24px;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: all var(--duration) var(--ease);
+}
+.nav-btn-primary:hover { background: var(--gold); color: var(--text); }
+
+/* ═══════════════════════════════════════════
+   HERO — Hims-style: big visual + clear CTA
+   ═══════════════════════════════════════════ */
+.hero {
+  min-height: 92vh;
+  background: var(--dark);
+  position: relative; overflow: hidden;
+  display: flex; align-items: center;
+  padding: 120px 56px 80px;
+}
+.hero-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 120% 80% at 70% 30%, rgba(196,163,90,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 60% at 10% 80%, rgba(196,163,90,0.04) 0%, transparent 50%);
+}
+.hero-inner {
+  max-width: 1400px; margin: 0 auto; width: 100%;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  position: relative; z-index: 2;
+}
+.hero-content { max-width: 560px; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(196,163,90,0.12); border: 1px solid rgba(196,163,90,0.25);
+  padding: 6px 16px; margin-bottom: 32px;
+  font-size: 0.68rem; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--gold);
+}
+.hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+.hero-h1 {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 300; line-height: 1.05;
+  letter-spacing: -2px; color: var(--white);
+  margin-bottom: 28px;
+}
+.hero-h1 em { font-style: italic; color: var(--gold); }
+.hero-h1 strong { font-weight: 700; font-style: normal; }
+.hero-sub {
+  font-size: 1.05rem; font-weight: 300;
+  color: rgba(255,255,255,0.5); line-height: 1.75;
+  margin-bottom: 40px; max-width: 440px;
+}
+.hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--gold); color: var(--text);
+  padding: 14px 32px;
+  font-size: 0.78rem; font-weight: 600; letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: all var(--duration) var(--ease);
+}
+.btn-primary:hover { background: var(--gold-lt); }
+.btn-primary .arrow { transition: transform var(--duration) var(--ease); }
+.btn-primary:hover .arrow { transform: translateX(4px); }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid rgba(255,255,255,0.2); color: var(--white);
+  padding: 14px 32px;
+  font-size: 0.78rem; font-weight: 500; letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all var(--duration) var(--ease);
+}
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+/* Hero visual — product grid mockup */
+.hero-visual {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  position: relative;
+}
+.hero-product-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 28px 24px;
+  transition: all var(--duration) var(--ease);
+  position: relative; overflow: hidden;
+}
+.hero-product-card:hover {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(196,163,90,0.2);
+}
+.hero-product-card.featured {
+  grid-column: span 2;
+  padding: 36px 32px;
+  background: rgba(196,163,90,0.06);
+  border-color: rgba(196,163,90,0.15);
+}
+.hero-product-icon {
+  width: 40px; height: 40px;
+  background: rgba(196,163,90,0.12);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; margin-bottom: 16px;
+}
+.hero-product-name {
+  font-family: var(--font-display);
+  font-size: 1.3rem; font-weight: 500; color: var(--white);
+  margin-bottom: 6px; letter-spacing: -0.3px;
+}
+.hero-product-desc {
+  font-size: 0.78rem; color: rgba(255,255,255,0.35);
+  line-height: 1.5;
+}
+.hero-product-price {
+  font-family: var(--font-display);
+  font-size: 1.6rem; font-weight: 400; color: var(--gold);
+  margin-top: 12px; letter-spacing: -0.5px;
+}
+.hero-product-price span {
+  font-family: var(--font-body); font-size: 0.72rem;
+  color: rgba(255,255,255,0.3); font-weight: 400;
+}
+
+/* ═══════════════════════════════════════════
+   TRUST BAR
+   ═══════════════════════════════════════════ */
+.trust-bar {
+  background: var(--white); border-bottom: 1px solid var(--border);
+  padding: 20px 56px;
+  display: flex; justify-content: center; gap: 48px; flex-wrap: wrap;
+}
+.trust-item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 0.82rem; color: var(--muted); font-weight: 400;
+}
+.trust-icon {
+  width: 36px; height: 36px;
+  background: var(--gold-bg);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; flex-shrink: 0;
+}
+.trust-item strong { color: var(--text); font-weight: 600; }
+
+/* ═══════════════════════════════════════════
+   SHOP BY CONCERN — Hims-style category grid
+   ═══════════════════════════════════════════ */
+.concerns {
+  background: var(--cream); padding: 100px 56px;
+}
+.section-header {
+  text-align: center; margin-bottom: 64px;
+}
+.section-overline {
+  font-size: 0.68rem; font-weight: 600; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--gold-dk);
+  margin-bottom: 16px;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 300; letter-spacing: -1px; line-height: 1.1;
+}
+.section-title em { font-style: italic; color: var(--gold-dk); }
+.section-subtitle {
+  font-size: 0.92rem; color: var(--muted); line-height: 1.7;
+  max-width: 520px; margin: 16px auto 0; font-weight: 300;
+}
+
+.concern-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 16px; max-width: 1200px; margin: 0 auto;
+}
+.concern-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  padding: 32px 24px;
+  text-align: center;
+  transition: all var(--duration) var(--ease);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.concern-card:hover {
+  border-color: var(--gold);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.concern-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 3px; background: var(--gold);
+  transform: scaleX(0); transition: transform var(--duration) var(--ease);
+}
+.concern-card:hover::before { transform: scaleX(1); }
+.concern-icon {
+  width: 56px; height: 56px; margin: 0 auto 16px;
+  background: var(--gold-bg);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem;
+}
+.concern-name {
+  font-family: var(--font-display);
+  font-size: 1.3rem; font-weight: 500; margin-bottom: 8px;
+  letter-spacing: -0.3px;
+}
+.concern-desc {
+  font-size: 0.78rem; color: var(--muted); line-height: 1.5;
+  margin-bottom: 16px;
+}
+.concern-link {
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--gold-dk);
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: gap var(--duration) var(--ease);
+}
+.concern-card:hover .concern-link { gap: 10px; }
+
+/* ═══════════════════════════════════════════
+   PRODUCTS — Hims-style product cards
+   ═══════════════════════════════════════════ */
+.products {
+  background: var(--white); padding: 100px 56px;
+}
+.product-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 20px; max-width: 1200px; margin: 0 auto;
+}
+.product-card {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: all var(--duration) var(--ease);
+  cursor: pointer;
+}
+.product-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+}
+.product-image {
+  height: 220px;
+  background: var(--dark);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.product-image::after {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, rgba(196,163,90,0.08) 0%, transparent 70%);
+}
+.product-emoji {
+  font-size: 3.5rem; position: relative; z-index: 2;
+  filter: grayscale(0.2);
+}
+.product-tag {
+  position: absolute; top: 12px; left: 12px;
+  background: var(--gold); color: var(--text);
+  font-size: 0.62rem; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; padding: 4px 10px; z-index: 3;
+}
+.product-body { padding: 24px; }
+.product-category {
+  font-size: 0.65rem; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--gold-dk); margin-bottom: 8px;
+}
+.product-name {
+  font-family: var(--font-display);
+  font-size: 1.4rem; font-weight: 500; margin-bottom: 8px;
+  letter-spacing: -0.3px;
+}
+.product-desc {
+  font-size: 0.82rem; color: var(--muted); line-height: 1.6;
+  margin-bottom: 20px;
+}
+.product-footer {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 16px; border-top: 1px solid var(--border);
+}
+.product-price {
+  font-family: var(--font-display);
+  font-size: 1.6rem; font-weight: 400; letter-spacing: -0.5px;
+}
+.product-price span {
+  font-family: var(--font-body); font-size: 0.72rem;
+  color: var(--subtle); font-weight: 400;
+}
+.product-cta {
+  background: var(--text); color: var(--cream);
+  padding: 10px 20px;
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all var(--duration) var(--ease);
+}
+.product-cta:hover { background: var(--gold); color: var(--text); }
+
+/* ═══════════════════════════════════════════
+   HOW IT WORKS — Hims-style 3-step
+   ═══════════════════════════════════════════ */
+.how-it-works {
+  background: var(--dark); padding: 120px 56px;
+  position: relative; overflow: hidden;
+}
+.how-it-works::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(196,163,90,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.how-inner {
+  max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;
+}
+.how-steps-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+  margin-top: 64px;
+}
+.how-step {
+  text-align: center; padding: 48px 32px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.02);
+  transition: all var(--duration) var(--ease);
+}
+.how-step:hover {
+  border-color: rgba(196,163,90,0.2);
+  background: rgba(196,163,90,0.04);
+}
+.how-step-num {
+  font-family: var(--font-display);
+  font-size: 4rem; font-weight: 300; color: var(--gold);
+  letter-spacing: -3px; line-height: 1;
+  margin-bottom: 20px;
+}
+.how-step-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem; font-weight: 500; color: var(--white);
+  margin-bottom: 12px; letter-spacing: -0.3px;
+}
+.how-step-desc {
+  font-size: 0.85rem; color: rgba(255,255,255,0.4);
+  line-height: 1.7; font-weight: 300;
+}
+.how-step-icon {
+  width: 48px; height: 48px; margin: 0 auto 20px;
+  background: rgba(196,163,90,0.1);
+  border: 1px solid rgba(196,163,90,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+}
+
+/* ═══════════════════════════════════════════
+   FEATURED PROTOCOL — Hero product spotlight
+   ═══════════════════════════════════════════ */
+.featured {
+  background: var(--cream); padding: 120px 56px;
+}
+.featured-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+}
+.featured-visual {
+  background: var(--dark);
+  aspect-ratio: 4/5;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.featured-visual::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, rgba(196,163,90,0.1) 0%, transparent 60%);
+}
+.featured-visual-content {
+  text-align: center; position: relative; z-index: 2;
+}
+.featured-visual-icon { font-size: 6rem; margin-bottom: 16px; }
+.featured-visual-label {
+  font-family: var(--font-display);
+  font-size: 2rem; font-weight: 300; color: var(--white);
+  letter-spacing: -1px;
+}
+.featured-visual-sub {
+  font-size: 0.75rem; color: rgba(255,255,255,0.3);
+  letter-spacing: 2px; text-transform: uppercase; margin-top: 8px;
+}
+.featured-content {}
+.featured-tag {
+  font-size: 0.65rem; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--gold-dk);
+  display: flex; align-items: center; gap: 10px; margin-bottom: 20px;
+}
+.featured-tag::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+.featured-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 300; line-height: 1.1; letter-spacing: -1px;
+  margin-bottom: 20px;
+}
+.featured-h2 em { font-style: italic; color: var(--gold-dk); }
+.featured-desc {
+  font-size: 0.92rem; color: var(--muted); line-height: 1.8;
+  font-weight: 300; margin-bottom: 32px;
+}
+.featured-benefits {
+  list-style: none; margin-bottom: 36px;
+}
+.featured-benefits li {
+  padding: 10px 0;
+  font-size: 0.88rem; color: var(--text);
+  display: flex; align-items: center; gap: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.featured-benefits li:last-child { border-bottom: none; }
+.featured-benefits li::before {
+  content: '✓'; color: var(--gold); font-weight: 700; font-size: 0.85rem;
+}
+.featured-price-row {
+  display: flex; align-items: center; gap: 24px; margin-bottom: 24px;
+}
+.featured-price {
+  font-family: var(--font-display);
+  font-size: 3rem; font-weight: 300; letter-spacing: -2px;
+}
+.featured-price span {
+  font-family: var(--font-body); font-size: 0.82rem;
+  color: var(--subtle); font-weight: 400;
+}
+.featured-original {
+  font-size: 1rem; color: var(--subtle);
+  text-decoration: line-through;
+}
+
+/* ═══════════════════════════════════════════
+   COMPARISON / WHY TIDL
+   ═══════════════════════════════════════════ */
+.why {
+  background: var(--white); padding: 120px 56px;
+}
+.why-grid {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+}
+.why-card {
+  padding: 40px 32px;
+  border: 1px solid var(--border);
+  transition: all var(--duration) var(--ease);
+}
+.why-card:hover {
+  border-color: var(--gold);
+  box-shadow: var(--shadow-md);
+}
+.why-icon {
+  width: 48px; height: 48px;
+  background: var(--gold-bg);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; margin-bottom: 20px;
+}
+.why-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem; font-weight: 500; margin-bottom: 12px;
+  letter-spacing: -0.3px;
+}
+.why-desc {
+  font-size: 0.85rem; color: var(--muted); line-height: 1.7;
+  font-weight: 300;
+}
+
+/* ═══════════════════════════════════════════
+   TESTIMONIALS
+   ═══════════════════════════════════════════ */
+.testimonials {
+  background: var(--dark); padding: 120px 56px;
+  position: relative; overflow: hidden;
+}
+.testimonials::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 30% 50%, rgba(196,163,90,0.05) 0%, transparent 60%);
+  pointer-events: none;
+}
+.test-grid {
+  max-width: 1200px; margin: 40px auto 0;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  position: relative; z-index: 2;
+}
+.test-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 36px 28px;
+  transition: all var(--duration) var(--ease);
+}
+.test-card:hover {
+  border-color: rgba(196,163,90,0.2);
+  background: rgba(196,163,90,0.04);
+}
+.test-stars { color: var(--gold); font-size: 0.85rem; margin-bottom: 16px; letter-spacing: 2px; }
+.test-quote {
+  font-size: 0.92rem; color: rgba(255,255,255,0.6);
+  line-height: 1.7; font-weight: 300; font-style: italic;
+  margin-bottom: 20px;
+}
+.test-author {
+  font-size: 0.78rem; color: rgba(255,255,255,0.3);
+  font-weight: 500; letter-spacing: 0.5px;
+}
+.test-author span { color: var(--gold); }
+
+/* ═══════════════════════════════════════════
+   PHARMACY CREDENTIALS
+   ═══════════════════════════════════════════ */
+.pharmacy {
+  background: var(--cream); padding: 100px 56px;
+}
+.pharm-grid {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+  background: var(--border);
+}
+.pharm-stat {
+  background: var(--white); padding: 36px 28px; text-align: center;
+  transition: background var(--duration) var(--ease);
+}
+.pharm-stat:hover { background: var(--gold-bg); }
+.pharm-num {
+  font-family: var(--font-display);
+  font-size: 2.8rem; font-weight: 600; color: var(--text);
+  letter-spacing: -2px; display: block; margin-bottom: 4px;
+}
+.pharm-num em { font-style: normal; color: var(--gold); }
+.pharm-label {
+  font-size: 0.72rem; color: var(--muted);
+  letter-spacing: 0.5px; line-height: 1.5;
+}
+
+/* ═══════════════════════════════════════════
+   CTA SECTION
+   ═══════════════════════════════════════════ */
+.cta-section {
+  background: var(--dark); padding: 120px 56px;
+  text-align: center; position: relative; overflow: hidden;
+}
+.cta-section::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(196,163,90,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cta-inner { position: relative; z-index: 2; }
+.cta-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 300; color: var(--white);
+  letter-spacing: -2px; line-height: 1.05;
+  margin-bottom: 24px;
+}
+.cta-h2 em { font-style: italic; color: var(--gold); }
+.cta-sub {
+  font-size: 1rem; color: rgba(255,255,255,0.4);
+  line-height: 1.7; max-width: 480px; margin: 0 auto 40px;
+  font-weight: 300;
+}
+.cta-buttons { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+
+/* ═══════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════ */
+.footer {
+  background: var(--black); padding: 80px 56px 40px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footer-grid {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 48px;
+}
+.footer-brand {}
+.footer-logo {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+}
+.footer-logo-mark {
+  width: 28px; height: 28px; background: var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 0.9rem; font-weight: 600; color: var(--black);
+}
+.footer-logo-text {
+  font-family: var(--font-display); font-size: 1.2rem;
+  font-weight: 500; letter-spacing: 2px; color: var(--white);
+}
+.footer-tagline {
+  font-size: 0.82rem; color: rgba(255,255,255,0.3);
+  line-height: 1.7; font-weight: 300; max-width: 280px;
+}
+.footer-col-title {
+  font-size: 0.68rem; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 20px;
+}
+.footer-col a {
+  display: block; font-size: 0.82rem; color: rgba(255,255,255,0.35);
+  padding: 4px 0; transition: color var(--duration) var(--ease);
+}
+.footer-col a:hover { color: var(--gold); }
+.footer-bottom {
+  max-width: 1200px; margin: 48px auto 0;
+  padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.06);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-copy {
+  font-size: 0.72rem; color: rgba(255,255,255,0.2);
+}
+.footer-legal {
+  display: flex; gap: 24px;
+}
+.footer-legal a {
+  font-size: 0.72rem; color: rgba(255,255,255,0.2);
+  transition: color var(--duration) var(--ease);
+}
+.footer-legal a:hover { color: var(--gold); }
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+  .hero-visual { grid-template-columns: repeat(2, 1fr); }
+  .concern-grid { grid-template-columns: repeat(2, 1fr); }
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
+  .featured-inner { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: repeat(2, 1fr); }
+  .test-grid { grid-template-columns: repeat(2, 1fr); }
+  .pharm-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 768px) {
+  .nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .hero { padding: 100px 24px 60px; min-height: auto; }
+  .hero-visual { grid-template-columns: 1fr; }
+  .concerns, .products, .why, .pharmacy { padding: 80px 24px; }
+  .how-it-works, .testimonials, .cta-section { padding: 80px 24px; }
+  .concern-grid { grid-template-columns: 1fr; }
+  .product-grid { grid-template-columns: 1fr; }
+  .how-steps-grid { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr; }
+  .test-grid { grid-template-columns: 1fr; }
+  .pharm-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .featured-inner { gap: 40px; }
+  .trust-bar { padding: 16px 24px; gap: 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ NAVIGATION ═══════════ -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-mark">T</div>
+    <span class="nav-logo-text">TIDL</span>
+  </a>
+  <div class="nav-links">
+    <a href="#concerns">Hair Loss</a>
+    <a href="#concerns">Erectile Dysfunction</a>
+    <a href="#concerns">Skin Care</a>
+    <a href="#concerns">Mental Health</a>
+    <a href="#concerns">Weight Management</a>
+    <a href="#concerns">Sleep</a>
+  </div>
+  <div class="nav-right">
+    <a href="#" class="nav-btn-secondary">Sign In</a>
+    <a href="#" class="nav-btn-primary">Get Started</a>
+  </div>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">Licensed Telehealth Platform</div>
+      <h1 class="hero-h1">Your health,<br><em>delivered</em></h1>
+      <p class="hero-sub">Personalized treatments for hair loss, ED, skincare, mental health, and more — prescribed by licensed providers and delivered to your door.</p>
+      <div class="hero-ctas">
+        <a href="#concerns" class="btn-primary">Start Free Visit <span class="arrow">→</span></a>
+        <a href="#how" class="btn-outline">See How It Works</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-product-card featured">
+        <div class="hero-product-icon">💊</div>
+        <div class="hero-product-name">Hair Loss Protocol</div>
+        <div class="hero-product-desc">Clinically-proven finasteride & minoxidil formulations</div>
+        <div class="hero-product-price">$20<span>/mo</span></div>
+      </div>
+      <div class="hero-product-card">
+        <div class="hero-product-icon">🧴</div>
+        <div class="hero-product-name">Skincare</div>
+        <div class="hero-product-desc">Personalized Rx treatments</div>
+        <div class="hero-product-price">$15<span>/mo</span></div>
+      </div>
+      <div class="hero-product-card">
+        <div class="hero-product-icon">🧠</div>
+        <div class="hero-product-name">Mental Health</div>
+        <div class="hero-product-desc">Online therapy & psychiatry</div>
+        <div class="hero-product-price">$99<span>/mo</span></div>
+      </div>
+      <div class="hero-product-card">
+        <div class="hero-product-icon">💤</div>
+        <div class="hero-product-name">Sleep</div>
+        <div class="hero-product-desc">Sleep protocols & supplements</div>
+        <div class="hero-product-price">$12<span>/mo</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ TRUST BAR ═══════════ -->
+<section class="trust-bar">
+  <div class="trust-item"><span class="trust-icon">🩺</span> <strong>500+</strong> Licensed Providers</div>
+  <div class="trust-item"><span class="trust-icon">📦</span> <strong>2M+</strong> Prescriptions Filled</div>
+  <div class="trust-item"><span class="trust-icon">🔒</span> <strong>HIPAA</strong> Compliant</div>
+  <div class="trust-item"><span class="trust-icon">⭐</span> <strong>4.8/5</strong> Average Rating</div>
+  <div class="trust-item"><span class="trust-icon">🚚</span> <strong>Free</strong> Discreet Shipping</div>
+</section>
+
+<!-- ═══════════ SHOP BY CONCERN ═══════════ -->
+<section class="concerns" id="concerns">
+  <div class="section-header">
+    <div class="section-overline">— Shop by Concern —</div>
+    <h2 class="section-title">What would you like to <em>address</em>?</h2>
+    <p class="section-subtitle">Choose your concern below and get a personalized treatment plan from a licensed provider — no appointment needed.</p>
+  </div>
+  <div class="concern-grid">
+    <div class="concern-card">
+      <div class="concern-icon">💇</div>
+      <div class="concern-name">Hair Loss</div>
+      <div class="concern-desc">Clinically-proven treatments for male pattern baldness and thinning hair.</div>
+      <div class="concern-link">Get Started →</div>
+    </div>
+    <div class="concern-card">
+      <div class="concern-icon">💪</div>
+      <div class="concern-name">Erectile Dysfunction</div>
+      <div class="concern-desc">FDA-approved sildenafil & tadalafil, prescribed online and delivered discreetly.</div>
+      <div class="concern-link">Get Started →</div>
+    </div>
+    <div class="concern-card">
+      <div class="concern-icon">✨</div>
+      <div class="concern-name">Skincare</div>
+      <div class="concern-desc">Custom Rx formulas for acne, anti-aging, dark spots, and more.</div>
+      <div class="concern-link">Get Started →</div>
+    </div>
+    <div class="concern-card">
+      <div class="concern-icon">🧠</div>
+      <div class="concern-name">Mental Health</div>
+      <div class="concern-desc">Online therapy & psychiatric medication management from licensed professionals.</div>
+      <div class="concern-link">Get Started →</div>
+    </div>
+    <div class="concern-card">
+      <div class="concern-icon">⚖️</div>
+      <div class="concern-name">Weight Management</div>
+      <div class="concern-desc">GLP-1 medications and personalized weight loss programs with clinical support.</div>
+      <div class="concern-link">Get Started →</div>
+    </div>
+    <div class="concern-card">
+      <div class="concern-icon">💤</div>
+      <div class="concern-name">Sleep</div>
+      <div class="concern-desc">Evidence-based sleep protocols, supplements, and prescription options.</div>
+      <div class="concern-link">Get Started →</div>
+    </div>
+    <div class="concern-card">
+      <div class="concern-icon">❤️</div>
+      <div class="concern-name">Heart Health</div>
+      <div class="concern-desc">Cholesterol management, blood pressure monitoring, and preventive care.</div>
+      <div class="concern-link">Get Started →</div>
+    </div>
+    <div class="concern-card">
+      <div class="concern-icon">🔥</div>
+      <div class="concern-name">Cold Sores</div>
+      <div class="concern-desc">Fast-acting antiviral treatments to prevent and heal outbreaks.</div>
+      <div class="concern-link">Get Started →</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PRODUCTS ═══════════ -->
+<section class="products" id="products">
+  <div class="section-header">
+    <div class="section-overline">— Popular Treatments —</div>
+    <h2 class="section-title">Personalized for <em>you</em></h2>
+    <p class="section-subtitle">Every treatment is prescribed by a licensed provider based on your unique health profile.</p>
+  </div>
+  <div class="product-grid">
+    <div class="product-card">
+      <div class="product-image">
+        <div class="product-tag">Most Popular</div>
+        <div class="product-emoji">💊</div>
+      </div>
+      <div class="product-body">
+        <div class="product-category">Hair Loss</div>
+        <div class="product-name">Finasteride</div>
+        <div class="product-desc">FDA-approved oral treatment that blocks DHT to stop hair loss and promote regrowth.</div>
+        <div class="product-footer">
+          <div class="product-price">$20<span>/mo</span></div>
+          <button class="product-cta">Start Visit →</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-image">
+        <div class="product-emoji">🧴</div>
+      </div>
+      <div class="product-body">
+        <div class="product-category">Hair Loss</div>
+        <div class="product-name">Minoxidil Solution</div>
+        <div class="product-desc">Topical treatment applied directly to the scalp to stimulate hair follicles and regrowth.</div>
+        <div class="product-footer">
+          <div class="product-price">$15<span>/mo</span></div>
+          <button class="product-cta">Start Visit →</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-image">
+        <div class="product-emoji">💊</div>
+      </div>
+      <div class="product-body">
+        <div class="product-category">Erectile Dysfunction</div>
+        <div class="product-name">Sildenafil</div>
+        <div class="product-desc">Generic Viagra® — the same active ingredient at a fraction of the cost. Fast-acting.</div>
+        <div class="product-footer">
+          <div class="product-price">$4<span>/dose</span></div>
+          <button class="product-cta">Start Visit →</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-image">
+        <div class="product-emoji">💊</div>
+      </div>
+      <div class="product-body">
+        <div class="product-category">Erectile Dysfunction</div>
+        <div class="product-name">Tadalafil</div>
+        <div class="product-desc">Generic Cialis® — longer-lasting ED treatment effective for up to 36 hours.</div>
+        <div class="product-footer">
+          <div class="product-price">$8<span>/dose</span></div>
+          <button class="product-cta">Start Visit →</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-image">
+        <div class="product-emoji">✨</div>
+      </div>
+      <div class="product-body">
+        <div class="product-category">Skincare</div>
+        <div class="product-name">Custom Rx Cream</div>
+        <div class="product-desc">Personalized prescription formula for acne, anti-aging, or dark spots — compounded for your skin.</div>
+        <div class="product-footer">
+          <div class="product-price">$15<span>/mo</span></div>
+          <button class="product-cta">Start Visit →</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-image">
+        <div class="product-emoji">🧠</div>
+      </div>
+      <div class="product-body">
+        <div class="product-category">Mental Health</div>
+        <div class="product-name">Online Psychiatry</div>
+        <div class="product-desc">Licensed psychiatric evaluation and medication management — from the comfort of home.</div>
+        <div class="product-footer">
+          <div class="product-price">$99<span>/mo</span></div>
+          <button class="product-cta">Start Visit →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FEATURED PROTOCOL ═══════════ -->
+<section class="featured" id="featured">
+  <div class="featured-inner">
+    <div class="featured-visual">
+      <div class="featured-visual-content">
+        <div class="featured-visual-icon">💇‍♂️</div>
+        <div class="featured-visual-label">Hair Protocol</div>
+        <div class="featured-visual-label" style="font-size: 1rem; color: rgba(255,255,255,0.4); margin-top: 4px;">Complete System</div>
+        <div class="featured-visual-sub">Finasteride + Minoxidil + Biotin</div>
+      </div>
+    </div>
+    <div class="featured-content">
+      <div class="featured-tag">Featured Protocol</div>
+      <h2 class="featured-h2">The complete <em>hair regrowth</em> system</h2>
+      <p class="featured-desc">Our most popular protocol combines FDA-approved finasteride to block DHT, topical minoxidil to stimulate follicles, and biotin supplementation for stronger, healthier hair growth.</p>
+      <ul class="featured-benefits">
+        <li>Blocks DHT production at the source</li>
+        <li>Stimulates dormant hair follicles</li>
+        <li>Visible results in 3–6 months</li>
+        <li>Prescribed by a licensed provider</li>
+        <li>Delivered discreetly to your door</li>
+      </ul>
+      <div class="featured-price-row">
+        <div class="featured-price">$35<span>/mo</span></div>
+        <div class="featured-original">$65/mo</div>
+      </div>
+      <a href="#" class="btn-primary">Start Your Free Visit <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ HOW IT WORKS ═══════════ -->
+<section class="how-it-works" id="how">
+  <div class="how-inner">
+    <div class="section-header">
+      <div class="section-overline" style="color: var(--gold);">— How It Works —</div>
+      <h2 class="section-title" style="color: var(--white);">Three steps to <em style="color: var(--gold);">better health</em></h2>
+    </div>
+    <div class="how-steps-grid">
+      <div class="how-step">
+        <div class="how-step-icon">📋</div>
+        <div class="how-step-num">01</div>
+        <div class="how-step-title">Online Assessment</div>
+        <div class="how-step-desc">Answer a few questions about your health history and goals. Takes under 5 minutes — no appointment needed.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-step-icon">🩺</div>
+        <div class="how-step-num">02</div>
+        <div class="how-step-title">Provider Review</div>
+        <div class="how-step-desc">A licensed medical provider reviews your profile and, if appropriate, writes a prescription tailored to you.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-step-icon">📦</div>
+        <div class="how-step-num">03</div>
+        <div class="how-step-title">Delivered to You</div>
+        <div class="how-step-desc">Your medication is filled by a licensed pharmacy and shipped in discreet packaging directly to your door.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ WHY TIDL ═══════════ -->
+<section class="why" id="why">
+  <div class="section-header">
+    <div class="section-overline">— Why TIDL —</div>
+    <h2 class="section-title">Healthcare, <em>elevated</em></h2>
+    <p class="section-subtitle">We combine clinical rigor with the convenience you deserve.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">🩺</div>
+      <div class="why-title">Licensed Providers</div>
+      <div class="why-desc">Every prescription is written by a board-certified physician or nurse practitioner — never an algorithm alone.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🔬</div>
+      <div class="why-title">Evidence-Based</div>
+      <div class="why-desc">We only offer treatments backed by clinical research and FDA approval. No snake oil, no gimmicks.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🔒</div>
+      <div class="why-title">Private & Secure</div>
+      <div class="why-desc">HIPAA-compliant platform. Your health data is encrypted, your shipments are discreet, your privacy is paramount.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">💰</div>
+      <div class="why-title">Transparent Pricing</div>
+      <div class="why-desc">No hidden fees, no surprise bills. See your cost upfront before you commit. Cancel anytime.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🚚</div>
+      <div class="why-title">Free Shipping</div>
+      <div class="why-desc">Every order ships free in discreet packaging. No pharmacy lines, no waiting rooms, no hassle.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">💬</div>
+      <div class="why-title">Ongoing Support</div>
+      <div class="why-desc">Message your provider anytime. Adjustments, questions, follow-ups — we're here for the long run.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ TESTIMONIALS ═══════════ -->
+<section class="testimonials">
+  <div class="section-header">
+    <div class="section-overline" style="color: var(--gold);">— Real Results —</div>
+    <h2 class="section-title" style="color: var(--white);">What our members <em style="color: var(--gold);">say</em></h2>
+  </div>
+  <div class="test-grid">
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <div class="test-quote">"I was skeptical about telehealth, but TIDL made it so easy. My provider was thorough, the medication arrived in 2 days, and I'm already seeing results."</div>
+      <div class="test-author">— Marcus T. <span>· Hair Loss</span></div>
+    </div>
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <div class="test-quote">"Finally, a healthcare experience that respects my time and privacy. No awkward waiting rooms, no judgment — just real medicine delivered."</div>
+      <div class="test-author">— James R. <span>· ED Treatment</span></div>
+    </div>
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <div class="test-quote">"The skincare formula they compounded for me cleared my acne in 6 weeks. Dermatologists couldn't do that in 2 years. Game changer."</div>
+      <div class="test-author">— Alex K. <span>· Skincare</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PHARMACY CREDENTIALS ═══════════ -->
+<section class="pharmacy">
+  <div class="section-header">
+    <div class="section-overline">— Trust & Credentials —</div>
+    <h2 class="section-title">Built on <em>clinical trust</em></h2>
+  </div>
+  <div class="pharm-grid">
+    <div class="pharm-stat">
+      <span class="pharm-num">500<em>+</em></span>
+      <span class="pharm-label">Licensed Providers</span>
+    </div>
+    <div class="pharm-stat">
+      <span class="pharm-num">2<em>M+</em></span>
+      <span class="pharm-label">Prescriptions Filled</span>
+    </div>
+    <div class="pharm-stat">
+      <span class="pharm-num">50</span>
+      <span class="pharm-label">States Served</span>
+    </div>
+    <div class="pharm-stat">
+      <span class="pharm-num">4.8<em>/5</em></span>
+      <span class="pharm-label">Average Rating</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CTA ═══════════ -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <h2 class="cta-h2">Start your <em>free visit</em> today</h2>
+    <p class="cta-sub">No appointment, no waiting room, no judgment. Just licensed healthcare, delivered.</p>
+    <div class="cta-buttons">
+      <a href="#" class="btn-primary">Get Started — It's Free <span class="arrow">→</span></a>
+      <a href="#how" class="btn-outline">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <div class="footer-logo-mark">T</div>
+        <span class="footer-logo-text">TIDL</span>
+      </div>
+      <p class="footer-tagline">Peak performance medicine, delivered. Licensed providers, evidence-based treatments, discreet to your door.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Treatments</div>
+      <a href="#">Hair Loss</a>
+      <a href="#">Erectile Dysfunction</a>
+      <a href="#">Skincare</a>
+      <a href="#">Mental Health</a>
+      <a href="#">Weight Management</a>
+      <a href="#">Sleep</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Company</div>
+      <a href="#">About</a>
+      <a href="#">How It Works</a>
+      <a href="#">Providers</a>
+      <a href="#">Careers</a>
+      <a href="#">Press</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Support</div>
+      <a href="#">Help Center</a>
+      <a href="#">Contact Us</a>
+      <a href="#">Track Order</a>
+      <a href="#">Refill</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Legal</div>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">HIPAA Notice</a>
+      <a href="#">Telehealth Consent</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 TIDL Health, Inc. All rights reserved.</div>
+    <div class="footer-legal">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Accessibility</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Nav scroll effect
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+
+</body>
+</html>
