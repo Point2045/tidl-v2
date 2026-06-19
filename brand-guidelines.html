@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TIDL — Brand Guidelines</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23C4A35A'/><text x='16' y='22' text-anchor='middle' font-family='Georgia' font-size='18' fill='%230A0A08'>T</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #FAFAF7; --white: #FFFFFF; --warm: #F4EFE6; --border: #E8E2D6;
+  --text: #0F0F0C; --muted: #6B6860; --subtle: #9E9B95; --black: #0A0A08;
+  --dark: #111110; --dark2: #1C1C19;
+  --gold: #C4A35A; --gold-lt: #E2CFA0; --gold-dk: #8B7030; --gold-bg: #F7F1E4;
+  --success: #4A7C59; --success-bg: #EDF5F0;
+  --error: #B84233; --error-bg: #FDF0EE;
+  --info: #3B6B9C; --info-bg: #EDF3FA;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body { font-family: var(--font-body); background: var(--cream); color: var(--text); line-height: 1.6; }
+
+/* NAV */
+.bg-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  height: 56px; display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px; background: rgba(250,250,247,0.97);
+  backdrop-filter: blur(20px); border-bottom: 1px solid var(--border);
+}
+.bg-nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.bg-nav-mark { width: 28px; height: 28px; background: var(--gold); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 0.9rem; font-weight: 600; color: var(--black); }
+.bg-nav-title { font-family: var(--font-display); font-size: 1.1rem; font-weight: 500; letter-spacing: 2px; }
+.bg-nav-sub { font-size: 0.72rem; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+.bg-nav-links { display: flex; gap: 24px; }
+.bg-nav-links a { font-size: 0.78rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+.bg-nav-links a:hover { color: var(--gold-dk); }
+
+/* LAYOUT */
+.bg-page { padding: 80px 56px 120px; max-width: 1400px; margin: 0 auto; }
+.bg-section { margin-bottom: 96px; }
+.bg-section:last-child { margin-bottom: 0; }
+
+/* HEADINGS */
+.bg-overline {
+  font-size: 0.65rem; font-weight: 600; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--gold-dk); margin-bottom: 12px;
+  display: flex; align-items: center; gap: 10px;
+}
+.bg-overline::before { content: ''; width: 20px; height: 1px; background: var(--gold); }
+.bg-h1 {
+  font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300; letter-spacing: -2px; line-height: 1.05; margin-bottom: 16px;
+}
+.bg-h1 em { font-style: italic; color: var(--gold); }
+.bg-h2 {
+  font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 300; letter-spacing: -1px; line-height: 1.1; margin-bottom: 32px;
+}
+.bg-h2 em { font-style: italic; color: var(--gold-dk); }
+.bg-h3 {
+  font-family: var(--font-display); font-size: 1.3rem; font-weight: 500;
+  letter-spacing: -0.3px; margin-bottom: 16px;
+}
+.bg-p { font-size: 0.92rem; color: var(--muted); line-height: 1.8; font-weight: 300; max-width: 640px; }
+
+/* DIVIDER */
+.bg-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 0; }
+
+/* COLOR SWATCHES */
+.swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin-top: 24px; }
+.swatch { border: 1px solid var(--border); overflow: hidden; }
+.swatch-color { height: 80px; }
+.swatch-info { padding: 12px; background: var(--white); }
+.swatch-name { font-size: 0.78rem; font-weight: 600; margin-bottom: 2px; }
+.swatch-hex { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); }
+.swatch-var { font-family: var(--font-mono); font-size: 0.65rem; color: var(--subtle); margin-top: 2px; }
+
+/* TYPOGRAPHY SPECIMEN */
+.type-specimen { margin-top: 24px; }
+.type-row { display: grid; grid-template-columns: 200px 1fr; gap: 24px; align-items: baseline; padding: 20px 0; border-bottom: 1px solid var(--border); }
+.type-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--subtle); }
+.type-sample-display { font-family: var(--font-display); font-size: 3rem; font-weight: 300; letter-spacing: -2px; line-height: 1.1; }
+.type-sample-body { font-family: var(--font-body); font-size: 0.92rem; line-height: 1.8; color: var(--muted); }
+.type-sample-overline { font-family: var(--font-body); font-size: 0.65rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--gold-dk); }
+.type-specs { font-family: var(--font-mono); font-size: 0.68rem; color: var(--subtle); margin-top: 4px; }
+
+/* COMPONENTS */
+.comp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 24px; }
+.comp-card { background: var(--white); border: 1px solid var(--border); padding: 32px; }
+.comp-dark { background: var(--dark); border-color: rgba(255,255,255,0.06); }
+
+/* BUTTONS */
+.btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--gold); color: var(--text); padding: 14px 32px; font-size: 0.78rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; transition: all 0.25s; }
+.btn-primary:hover { background: var(--gold-lt); }
+.btn-outline-light { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(255,255,255,0.2); color: var(--white); padding: 14px 32px; font-size: 0.78rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; transition: all 0.25s; }
+.btn-outline-dark { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--border); color: var(--text); padding: 14px 32px; font-size: 0.78rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; transition: all 0.25s; }
+.btn-nav { display: inline-flex; align-items: center; background: var(--text); color: var(--cream); padding: 10px 24px; font-size: 0.72rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; transition: all 0.25s; }
+
+/* TABLE */
+.spec-table { width: 100%; border-collapse: collapse; margin-top: 24px; }
+.spec-table th { font-size: 0.68rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-dk); text-align: left; padding: 12px 16px; border-bottom: 2px solid var(--gold); }
+.spec-table td { font-size: 0.82rem; padding: 12px 16px; border-bottom: 1px solid var(--border); vertical-align: top; }
+.spec-table td:first-child { font-weight: 500; }
+.spec-table code { font-family: var(--font-mono); font-size: 0.75rem; background: var(--warm); padding: 2px 6px; }
+
+/* RULES */
+.rule { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); }
+.rule-icon { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+.rule-do { background: var(--success-bg); }
+.rule-dont { background: var(--error-bg); }
+.rule-text { font-size: 0.88rem; line-height: 1.6; }
+.rule-text strong { font-weight: 600; }
+
+/* SPACING SCALE */
+.spacing-row { display: flex; align-items: center; gap: 16px; padding: 8px 0; }
+.spacing-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--subtle); width: 60px; flex-shrink: 0; }
+.spacing-bar { height: 16px; background: var(--gold); opacity: 0.6; }
+.spacing-val { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .bg-page { padding: 80px 24px 80px; }
+  .bg-section { margin-bottom: 64px; }
+  .bg-nav { padding: 0 20px; }
+  .bg-nav-links { display: none; }
+  .type-row { grid-template-columns: 1fr; }
+  .swatch-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="bg-nav">
+  <a href="#" class="bg-nav-logo">
+    <div class="bg-nav-mark">T</div>
+    <span class="bg-nav-title">TIDL</span>
+  </a>
+  <div class="bg-nav-links">
+    <a href="#colors">Colors</a>
+    <a href="#typography">Typography</a>
+    <a href="#spacing">Spacing</a>
+    <a href="#components">Components</a>
+    <a href="#voice">Voice</a>
+    <a href="#rules">Rules</a>
+  </div>
+  <div class="bg-nav-sub">Brand Guidelines v1.0</div>
+</nav>
+
+<div class="bg-page">
+
+<!-- ═══ HERO ═══ -->
+<section class="bg-section">
+  <div class="bg-overline">Brand Guidelines</div>
+  <h1 class="bg-h1">TIDL <em>Design System</em></h1>
+  <p class="bg-p">The complete visual language for TIDL — a luxury telehealth platform that combines clinical authority with modern accessibility. Every element is designed to communicate trust, elegance, and ease.</p>
+</section>
+
+<div class="bg-divider"></div>
+
+<!-- ═══ COLORS ═══ -->
+<section class="bg-section" id="colors">
+  <div class="bg-overline">01 — Color Palette</div>
+  <h2 class="bg-h2">The <em>gold</em> standard</h2>
+  <p class="bg-p">Gold is the signature. Use it sparingly for maximum impact — CTAs, accents, hover states, brand marks. Never as body text.</p>
+
+  <h3 class="bg-h3" style="margin-top: 40px;">Primary Palette</h3>
+  <div class="swatch-grid">
+    <div class="swatch"><div class="swatch-color" style="background:#C4A35A;"></div><div class="swatch-info"><div class="swatch-name">Gold</div><div class="swatch-hex">#C4A35A</div><div class="swatch-var">--gold</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#E2CFA0;"></div><div class="swatch-info"><div class="swatch-name">Gold Light</div><div class="swatch-hex">#E2CFA0</div><div class="swatch-var">--gold-lt</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#8B7030;"></div><div class="swatch-info"><div class="swatch-name">Gold Dark</div><div class="swatch-hex">#8B7030</div><div class="swatch-var">--gold-dk</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#F7F1E4;"></div><div class="swatch-info"><div class="swatch-name">Gold Background</div><div class="swatch-hex">#F7F1E4</div><div class="swatch-var">--gold-bg</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#0F0F0C;"></div><div class="swatch-info"><div class="swatch-name">Text / Black</div><div class="swatch-hex">#0F0F0C</div><div class="swatch-var">--text</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#0A0A08;"></div><div class="swatch-info"><div class="swatch-name">Black</div><div class="swatch-hex">#0A0A08</div><div class="swatch-var">--black</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#111110;"></div><div class="swatch-info"><div class="swatch-name">Dark</div><div class="swatch-hex">#111110</div><div class="swatch-var">--dark</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#1C1C19;"></div><div class="swatch-info"><div class="swatch-name">Dark 2</div><div class="swatch-hex">#1C1C19</div><div class="swatch-var">--dark2</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#FAFAF7;"></div><div class="swatch-info"><div class="swatch-name">Cream</div><div class="swatch-hex">#FAFAF7</div><div class="swatch-var">--cream</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#FFFFFF; border:1px solid #E8E2D6;"></div><div class="swatch-info"><div class="swatch-name">White</div><div class="swatch-hex">#FFFFFF</div><div class="swatch-var">--white</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#F4EFE6;"></div><div class="swatch-info"><div class="swatch-name">Warm</div><div class="swatch-hex">#F4EFE6</div><div class="swatch-var">--warm</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#E8E2D6;"></div><div class="swatch-info"><div class="swatch-name">Border</div><div class="swatch-hex">#E8E2D6</div><div class="swatch-var">--border</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#6B6860;"></div><div class="swatch-info"><div class="swatch-name">Muted</div><div class="swatch-hex">#6B6860</div><div class="swatch-var">--muted</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#9E9B95;"></div><div class="swatch-info"><div class="swatch-name">Subtle</div><div class="swatch-hex">#9E9B95</div><div class="swatch-var">--subtle</div></div></div>
+  </div>
+
+  <h3 class="bg-h3" style="margin-top: 48px;">Semantic Colors</h3>
+  <div class="swatch-grid">
+    <div class="swatch"><div class="swatch-color" style="background:#4A7C59;"></div><div class="swatch-info"><div class="swatch-name">Success</div><div class="swatch-hex">#4A7C59</div><div class="swatch-var">--success</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#EDF5F0;"></div><div class="swatch-info"><div class="swatch-name">Success BG</div><div class="swatch-hex">#EDF5F0</div><div class="swatch-var">--success-bg</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#B84233;"></div><div class="swatch-info"><div class="swatch-name">Error</div><div class="swatch-hex">#B84233</div><div class="swatch-var">--error</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#FDF0EE;"></div><div class="swatch-info"><div class="swatch-name">Error BG</div><div class="swatch-hex">#FDF0EE</div><div class="swatch-var">--error-bg</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#3B6B9C;"></div><div class="swatch-info"><div class="swatch-name">Info</div><div class="swatch-hex">#3B6B9C</div><div class="swatch-var">--info</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#EDF3FA;"></div><div class="swatch-info"><div class="swatch-name">Info BG</div><div class="swatch-hex">#EDF3FA</div><div class="swatch-var">--info-bg</div></div></div>
+  </div>
+</section>
+
+<div class="bg-divider"></div>
+
+<!-- ═══ TYPOGRAPHY ═══ -->
+<section class="bg-section" id="typography">
+  <div class="bg-overline">02 — Typography</div>
+  <h2 class="bg-h2">Two families, <em>one voice</em></h2>
+  <p class="bg-p">Cormorant Garamond for emotion and elegance. Inter for function and clarity. Never mix roles.</p>
+
+  <div class="type-specimen">
+    <div class="type-row">
+      <div>
+        <div class="type-label">Display H1</div>
+        <div class="type-specs">Cormorant Garamond 300 · clamp(3rem–5.5rem) · ls: -2px · lh: 1.05</div>
+      </div>
+      <div class="type-sample-display">Your health, <em style="color:var(--gold);">delivered</em></div>
+    </div>
+    <div class="type-row">
+      <div>
+        <div class="type-label">Display H2</div>
+        <div class="type-specs">Cormorant Garamond 300 · clamp(2rem–3.2rem) · ls: -1px · lh: 1.1</div>
+      </div>
+      <div style="font-family:var(--font-display);font-size:2rem;font-weight:300;letter-spacing:-1px;">Personalized for <em style="color:var(--gold-dk);">you</em></div>
+    </div>
+    <div class="type-row">
+      <div>
+        <div class="type-label">Section Title</div>
+        <div class="type-specs">Cormorant Garamond 500 · 1.3–1.5rem · ls: -0.3px</div>
+      </div>
+      <div style="font-family:var(--font-display);font-size:1.4rem;font-weight:500;letter-spacing:-0.3px;">Hair Loss Protocol</div>
+    </div>
+    <div class="type-row">
+      <div>
+        <div class="type-label">Overline</div>
+        <div class="type-specs">Inter 600 · 0.65–0.68rem · ls: 2–3px · uppercase</div>
+      </div>
+      <div class="type-sample-overline">— Shop by Concern —</div>
+    </div>
+    <div class="type-row">
+      <div>
+        <div class="type-label">Body</div>
+        <div class="type-specs">Inter 300–400 · 0.85–0.92rem · lh: 1.6–1.8</div>
+      </div>
+      <div class="type-sample-body">Every treatment is prescribed by a licensed provider based on your unique health profile. No appointment needed.</div>
+    </div>
+    <div class="type-row">
+      <div>
+        <div class="type-label">Price</div>
+        <div class="type-specs">Cormorant Garamond 300–400 · 1.5–3rem · ls: -0.5 to -2px</div>
+      </div>
+      <div style="font-family:var(--font-display);font-size:2.4rem;font-weight:300;letter-spacing:-1px;">$20<span style="font-family:var(--font-body);font-size:0.72rem;color:var(--subtle);">/mo</span></div>
+    </div>
+    <div class="type-row">
+      <div>
+        <div class="type-label">CTA Button</div>
+        <div class="type-specs">Inter 600 · 0.72–0.78rem · ls: 1.5px · uppercase</div>
+      </div>
+      <div style="font-family:var(--font-body);font-size:0.78rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;">Start Free Visit →</div>
+    </div>
+  </div>
+</section>
+
+<div class="bg-divider"></div>
+
+<!-- ═══ SPACING ═══ -->
+<section class="bg-section" id="spacing">
+  <div class="bg-overline">03 — Spacing & Layout</div>
+  <h2 class="bg-h2">Architectural <em>rhythm</em></h2>
+
+  <h3 class="bg-h3">Spacing Scale</h3>
+  <div style="margin-top: 24px;">
+    <div class="spacing-row"><div class="spacing-label">4px</div><div class="spacing-bar" style="width:4px;"></div><div class="spacing-val">--s1</div></div>
+    <div class="spacing-row"><div class="spacing-label">8px</div><div class="spacing-bar" style="width:8px;"></div><div class="spacing-val">--s2</div></div>
+    <div class="spacing-row"><div class="spacing-label">12px</div><div class="spacing-bar" style="width:12px;"></div><div class="spacing-val">--s3</div></div>
+    <div class="spacing-row"><div class="spacing-label">16px</div><div class="spacing-bar" style="width:16px;"></div><div class="spacing-val">--s4</div></div>
+    <div class="spacing-row"><div class="spacing-label">20px</div><div class="spacing-bar" style="width:20px;"></div><div class="spacing-val">--s5</div></div>
+    <div class="spacing-row"><div class="spacing-label">24px</div><div class="spacing-bar" style="width:24px;"></div><div class="spacing-val">--s6</div></div>
+    <div class="spacing-row"><div class="spacing-label">32px</div><div class="spacing-bar" style="width:32px;"></div><div class="spacing-val">--s8</div></div>
+    <div class="spacing-row"><div class="spacing-label">40px</div><div class="spacing-bar" style="width:40px;"></div><div class="spacing-val">--s10</div></div>
+    <div class="spacing-row"><div class="spacing-label">48px</div><div class="spacing-bar" style="width:48px;"></div><div class="spacing-val">--s12</div></div>
+    <div class="spacing-row"><div class="spacing-label">64px</div><div class="spacing-bar" style="width:64px;"></div><div class="spacing-val">--s16</div></div>
+    <div class="spacing-row"><div class="spacing-label">80px</div><div class="spacing-bar" style="width:80px;"></div><div class="spacing-val">--s20</div></div>
+    <div class="spacing-row"><div class="spacing-label">96px</div><div class="spacing-bar" style="width:96px;"></div><div class="spacing-val">--s24</div></div>
+  </div>
+
+  <h3 class="bg-h3" style="margin-top: 48px;">Layout Rules</h3>
+  <table class="spec-table">
+    <tr><th>Property</th><th>Desktop</th><th>Mobile</th></tr>
+    <tr><td>Max Content Width</td><td>1200px</td><td>100%</td></tr>
+    <tr><td>Page Padding</td><td>56px</td><td>24px</td></tr>
+    <tr><td>Section Padding</td><td>100–120px vertical</td><td>80px vertical</td></tr>
+    <tr><td>Card Gaps</td><td>16–20px</td><td>16px</td></tr>
+    <tr><td>Grid Columns</td><td>4 / 3 / 2 col</td><td>1 col</td></tr>
+    <tr><td>Nav Height</td><td>64px</td><td>56px</td></tr>
+  </table>
+
+  <h3 class="bg-h3" style="margin-top: 32px;">Border Radius</h3>
+  <table class="spec-table">
+    <tr><th>Token</th><th>Value</th><th>Usage</th></tr>
+    <tr><td><code>--r-sm</code></td><td>4px</td><td>Tags, badges</td></tr>
+    <tr><td><code>--r-md</code></td><td>8px</td><td>Inputs</td></tr>
+    <tr><td><code>--r-lg</code></td><td>12px</td><td>Cards (mobile)</td></tr>
+    <tr><td><code>0</code></td><td>0px</td><td>Primary design language — sharp edges</td></tr>
+    <tr><td><code>--r-full</code></td><td>9999px</td><td>Pills, badges only</td></tr>
+  </table>
+</section>
+
+<div class="bg-divider"></div>
+
+<!-- ═══ COMPONENTS ═══ -->
+<section class="bg-section" id="components">
+  <div class="bg-overline">04 — Components</div>
+  <h2 class="bg-h2">Building <em>blocks</em></h2>
+
+  <h3 class="bg-h3">Buttons</h3>
+  <div class="comp-grid">
+    <div class="comp-card">
+      <div style="margin-bottom:8px;font-size:0.68rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold-dk);">Primary (Light BG)</div>
+      <a href="#" class="btn-primary">Start Free Visit →</a>
+    </div>
+    <div class="comp-card">
+      <div style="margin-bottom:8px;font-size:0.68rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold-dk);">Outline (Dark BG)</div>
+      <div style="background:var(--dark);padding:24px;margin:-8px -8px 0;">
+        <a href="#" class="btn-outline-light">Learn More</a>
+      </div>
+    </div>
+    <div class="comp-card">
+      <div style="margin-bottom:8px;font-size:0.68rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold-dk);">Outline (Light BG)</div>
+      <a href="#" class="btn-outline-dark">See How It Works</a>
+    </div>
+    <div class="comp-card">
+      <div style="margin-bottom:8px;font-size:0.68rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold-dk);">Nav CTA</div>
+      <a href="#" class="btn-nav">Get Started</a>
+    </div>
+  </div>
+
+  <h3 class="bg-h3" style="margin-top: 48px;">Button Specs</h3>
+  <table class="spec-table">
+    <tr><th>Variant</th><th>Background</th><th>Text</th><th>Border</th><th>Hover</th></tr>
+    <tr><td>Primary</td><td><code>--gold</code></td><td><code>--text</code></td><td>none</td><td><code>--gold-lt</code> bg</td></tr>
+    <tr><td>Outline (light)</td><td>transparent</td><td><code>--white</code></td><td>1px rgba(255,255,255,0.2)</td><td>border gold, text gold</td></tr>
+    <tr><td>Outline (dark)</td><td>transparent</td><td><code>--text</code></td><td>1px <code>--border</code></td><td>border gold, text gold</td></tr>
+    <tr><td>Nav Primary</td><td><code>--text</code></td><td><code>--cream</code></td><td>none</td><td><code>--gold</code> bg, <code>--text</code> text</td></tr>
+  </table>
+
+  <h3 class="bg-h3" style="margin-top: 48px;">Cards</h3>
+  <div class="comp-grid">
+    <div class="comp-card" style="cursor:pointer;transition:all 0.25s;">
+      <div style="width:56px;height:56px;background:var(--gold-bg);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:16px;">💇</div>
+      <div style="font-family:var(--font-display);font-size:1.3rem;font-weight:500;margin-bottom:8px;">Hair Loss</div>
+      <div style="font-size:0.78rem;color:var(--muted);line-height:1.5;margin-bottom:16px;">Clinically-proven treatments for male pattern baldness.</div>
+      <div style="font-size:0.72rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--gold-dk);">Get Started →</div>
+    </div>
+    <div class="comp-card comp-dark" style="cursor:pointer;transition:all 0.25s;">
+      <div style="font-size:0.65rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;">Featured Protocol</div>
+      <div style="font-family:var(--font-display);font-size:1.8rem;font-weight:300;color:var(--white);letter-spacing:-0.5px;margin-bottom:8px;">Hair Protocol</div>
+      <div style="font-size:0.82rem;color:rgba(255,255,255,0.35);line-height:1.6;margin-bottom:20px;">Complete system with finasteride, minoxidil, and biotin.</div>
+      <div style="font-family:var(--font-display);font-size:2rem;font-weight:300;color:var(--gold);letter-spacing:-1px;">$35<span style="font-family:var(--font-body);font-size:0.72rem;color:rgba(255,255,255,0.3);">/mo</span></div>
+    </div>
+  </div>
+
+  <h3 class="bg-h3" style="margin-top: 48px;">Card Specs</h3>
+  <table class="spec-table">
+    <tr><th>Property</th><th>Light Card</th><th>Dark Card</th></tr>
+    <tr><td>Background</td><td><code>--white</code> or <code>--cream</code></td><td><code>rgba(255,255,255,0.03)</code></td></tr>
+    <tr><td>Border</td><td>1px <code>--border</code></td><td>1px <code>rgba(255,255,255,0.06)</code></td></tr>
+    <tr><td>Hover</td><td>translateY(-2px), shadow-md, border → gold</td><td>border → gold, bg lighten</td></tr>
+    <tr><td>Top Accent</td><td>3px gold bar on hover</td><td>Gold gradient line</td></tr>
+  </table>
+</section>
+
+<div class="bg-divider"></div>
+
+<!-- ═══ VOICE ═══ -->
+<section class="bg-section" id="voice">
+  <div class="bg-overline">05 — Voice & Copy</div>
+  <h2 class="bg-h2">Direct, not <em>clinical</em></h2>
+
+  <h3 class="bg-h3">Principles</h3>
+  <div style="margin-top:16px;">
+    <div class="rule"><div class="rule-icon rule-do">✓</div><div class="rule-text"><strong>Direct, not clinical</strong> — "Your health, delivered" not "Optimizing patient outcomes"</div></div>
+    <div class="rule"><div class="rule-icon rule-do">✓</div><div class="rule-text"><strong>Confident, not arrogant</strong> — "Clinically-proven" not "The best treatment available"</div></div>
+    <div class="rule"><div class="rule-icon rule-do">✓</div><div class="rule-text"><strong>Warm, not casual</strong> — "We're here for you" not "Hey bestie"</div></div>
+    <div class="rule"><div class="rule-icon rule-do">✓</div><div class="rule-text"><strong>Specific, not vague</strong> — "$20/mo" not "Affordable pricing"</div></div>
+    <div class="rule"><div class="rule-icon rule-do">✓</div><div class="rule-text"><strong>Active, not passive</strong> — "Start your visit" not "A visit can be started"</div></div>
+  </div>
+
+  <h3 class="bg-h3" style="margin-top: 40px;">Terminology</h3>
+  <table class="spec-table">
+    <tr><th>✓ Use</th><th>✗ Don't Use</th><th>Why</th></tr>
+    <tr><td>Provider</td><td>Doctor</td><td>Unless MD specifically</td></tr>
+    <tr><td>Treatment</td><td>Medication</td><td>When broader scope</td></tr>
+    <tr><td>Visit</td><td>Appointment</td><td>Less formal, more accessible</td></tr>
+    <tr><td>Delivered</td><td>Shipped</td><td>Too transactional</td></tr>
+    <tr><td>Personalized</td><td>Customized</td><td>Too tech-sounding</td></tr>
+    <tr><td>Evidence-based</td><td>Natural</td><td>Implies unproven</td></tr>
+    <tr><td>Discreet</td><td>Secret</td><td>Implies shame</td></tr>
+  </table>
+
+  <h3 class="bg-h3" style="margin-top: 40px;">CTA Patterns</h3>
+  <table class="spec-table">
+    <tr><th>Context</th><th>✓ Use</th><th>✗ Don't Use</th></tr>
+    <tr><td>Primary</td><td>Start Free Visit →</td><td>Submit</td></tr>
+    <tr><td>Primary alt</td><td>Get Started →</td><td>Click Here</td></tr>
+    <tr><td>Secondary</td><td>Learn More</td><td>Buy Now</td></tr>
+    <tr><td>Product</td><td>Start Visit →</td><td>Purchase</td></tr>
+  </table>
+</section>
+
+<div class="bg-divider"></div>
+
+<!-- ═══ RULES ═══ -->
+<section class="bg-section" id="rules">
+  <div class="bg-overline">06 — Design Rules</div>
+  <h2 class="bg-h2">Do's & <em>don'ts</em></h2>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px;">
+    <div>
+      <h3 class="bg-h3" style="color:var(--success);">✓ Do</h3>
+      <div class="rule"><div class="rule-icon rule-do">✓</div><div class="rule-text">Use gold sparingly — CTAs, accents, hover states only</div></div>
+      <div class="rule"><div class="rule-icon rule-do">✓</div><div class="rule-text">Use Cormorant Garamond for headings and prices</div></div>
+      <div class="rule"><div class="rule-icon rule-do">✓</div><div class="rule-text">Use Inter for all UI text, buttons, labels</div></div>
+      <div class="rule"><div class="rule-icon rule-do">✓</div><div class="rule-text">Use sharp edges (0 radius) as primary design language</div></div>
+      <div class="rule"><div class="rule-icon rule-do">✓</div><div class="rule-text">Use dark sections for contrast and visual rhythm</div></div>
+      <div class="rule"><div class="rule-icon rule-do">✓</div><div class="rule-text">Use italic gold for emphasis words in headings</div></div>
+      <div class="rule"><div class="rule-icon rule-do">✓</div><div class="rule-text">Maintain WCAG AA contrast ratios (4.5:1 body, 3:1 large)</div></div>
+    </div>
+    <div>
+      <h3 class="bg-h3" style="color:var(--error);">✗ Don't</h3>
+      <div class="rule"><div class="rule-icon rule-dont">✗</div><div class="rule-text">Use gold as body text color</div></div>
+      <div class="rule"><div class="rule-icon rule-dont">✗</div><div class="rule-text">Use Cormorant Garamond below 1rem</div></div>
+      <div class="rule"><div class="rule-icon rule-dont">✗</div><div class="rule-text">Use Inter for display headings</div></div>
+      <div class="rule"><div class="rule-icon rule-dont">✗</div><div class="rule-text">Round primary component corners (architectural feel)</div></div>
+      <div class="rule"><div class="rule-icon rule-dont">✗</div><div class="rule-text">Use stock medical imagery (stethoscopes, white coats)</div></div>
+      <div class="rule"><div class="rule-icon rule-dont">✗</div><div class="rule-text">Use "Submit", "Click Here", or "Buy Now" as CTAs</div></div>
+      <div class="rule"><div class="rule-icon rule-dont">✗</div><div class="rule-text">Mix TIDL visual identity with Point 2045 branding</div></div>
+    </div>
+  </div>
+
+  <h3 class="bg-h3" style="margin-top: 48px;">Logo Usage</h3>
+  <table class="spec-table">
+    <tr><th>Rule</th><th>Specification</th></tr>
+    <tr><td>Primary Mark</td><td>Gold (#C4A35A) square background, black serif "T" centered</td></tr>
+    <tr><td>Wordmark</td><td>"TIDL" in Cormorant Garamond 500, letter-spacing: 2px</td></tr>
+    <tr><td>Clear Space</td><td>1× mark height on all sides minimum</td></tr>
+    <tr><td>Dark Backgrounds</td><td>Gold mark stays gold, wordmark goes white</td></tr>
+    <tr><td>Light Backgrounds</td><td>Gold mark stays gold, wordmark goes black (#0F0F0C)</td></tr>
+    <tr><td>Never</td><td>Stretch, rotate, alter, or place on busy photography without overlay</td></tr>
+  </table>
+
+  <h3 class="bg-h3" style="margin-top: 48px;">Photography Direction</h3>
+  <table class="spec-table">
+    <tr><th>Property</th><th>Direction</th></tr>
+    <tr><td>Style</td><td>Clean, clinical, warm — not cold or sterile</td></tr>
+    <tr><td>Lighting</td><td>Soft, natural light on neutral backgrounds</td></tr>
+    <tr><td>Products</td><td>Dark (#111110) or warm (#F4EFE6) surfaces, centered, minimal props</td></tr>
+    <tr><td>Lifestyle</td><td>Real people, natural light, aspirational but accessible</td></tr>
+    <tr><td>Treatment</td><td>Subtle gold gradient overlay on hero images</td></tr>
+    <tr><td>Never</td><td>Stock medical imagery (stethoscopes, white coats on models)</td></tr>
+  </table>
+</section>
+
+<div class="bg-divider"></div>
+
+<!-- ═══ PAGE STRUCTURE ═══ -->
+<section class="bg-section">
+  <div class="bg-overline">07 — Page Structure</div>
+  <h2 class="bg-h2">Homepage <em>flow</em></h2>
+  <p class="bg-p">Hims-inspired layout with TIDL's luxury identity. Product-forward, e-commerce UX, clinical trust.</p>
+
+  <table class="spec-table" style="margin-top:24px;">
+    <tr><th>#</th><th>Section</th><th>Background</th><th>Purpose</th></tr>
+    <tr><td>1</td><td>Hero</td><td>Dark</td><td>Bold headline, value prop, CTA, product preview grid</td></tr>
+    <tr><td>2</td><td>Trust Bar</td><td>White</td><td>Stats strip — providers, prescriptions, ratings, shipping</td></tr>
+    <tr><td>3</td><td>Shop by Concern</td><td>Cream</td><td>8-card category grid (Hair, ED, Skin, MH, Weight, Sleep, Heart, Cold Sores)</td></tr>
+    <tr><td>4</td><td>Popular Products</td><td>White</td><td>6-card product grid with pricing</td></tr>
+    <tr><td>5</td><td>Featured Protocol</td><td>Cream</td><td>Spotlight product with benefits list</td></tr>
+    <tr><td>6</td><td>How It Works</td><td>Dark</td><td>3-step flow (Assessment → Review → Delivery)</td></tr>
+    <tr><td>7</td><td>Why TIDL</td><td>White</td><td>6-card value propositions</td></tr>
+    <tr><td>8</td><td>Testimonials</td><td>Dark</td><td>3-card social proof</td></tr>
+    <tr><td>9</td><td>Trust Stats</td><td>Cream</td><td>4-stat credential bar</td></tr>
+    <tr><td>10</td><td>CTA</td><td>Dark</td><td>Final conversion push</td></tr>
+    <tr><td>11</td><td>Footer</td><td>Black</td><td>Treatments, Company, Support, Legal</td></tr>
+  </table>
+
+  <h3 class="bg-h3" style="margin-top: 40px;">Key Differences from Hims</h3>
+  <table class="spec-table">
+    <tr><th>Aspect</th><th>Hims</th><th>TIDL</th></tr>
+    <tr><td>Positioning</td><td>Accessible wellness</td><td>Luxury telehealth</td></tr>
+    <tr><td>Color Accent</td><td>Blue / Purple</td><td>Gold (#C4A35A)</td></tr>
+    <tr><td>Typography</td><td>Sans-serif system</td><td>Serif display (Cormorant Garamond) + Sans body (Inter)</td></tr>
+    <tr><td>Corners</td><td>Rounded (8–16px)</td><td>Sharp (0px) — architectural feel</td></tr>
+    <tr><td>Dark Sections</td><td>Minimal</td><td>Alternating dark/light rhythm</td></tr>
+    <tr><td>Price Display</td><td>Sans-serif, small</td><td>Serif, large, prominent</td></tr>
+    <tr><td>Overall Feel</td><td>Friendly, casual</td><td>Elevated, authoritative</td></tr>
+  </table>
+</section>
+
+<div style="margin-top:80px;padding-top:40px;border-top:1px solid var(--border);text-align:center;">
+  <p style="font-size:0.78rem;color:var(--subtle);">TIDL Brand Guidelines v1.0 — June 2026</p>
+  <p style="font-size:0.72rem;color:var(--subtle);margin-top:4px;">View wireframe at <a href="https://point2045.github.io/tidl-v2/" style="color:var(--gold-dk);">point2045.github.io/tidl-v2</a></p>
+</div>
+
+</div>
+</body>
+</html>
